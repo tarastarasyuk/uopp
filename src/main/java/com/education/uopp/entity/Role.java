@@ -1,4 +1,4 @@
-package com.education.uopp.model;
+package com.education.uopp.entity;
 
 import org.springframework.security.core.GrantedAuthority;
 

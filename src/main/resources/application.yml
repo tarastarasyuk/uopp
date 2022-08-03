@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    url: jdbc:mysql://localhost:3306/uopp
+    password: root
+  mail:
+    host: localhost
+    username: phello
+    password: uhello
+    port: '1025'
+  jpa:
+    properties:
+      hibernate:
+        format_sql: 'true'
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: 'false'
