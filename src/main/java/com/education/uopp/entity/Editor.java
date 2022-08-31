@@ -1,4 +1,4 @@
-package com.education.uopp.model;
+package com.education.uopp.entity;
 
 import lombok.Data;
 
@@ -6,8 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Data
-@Entity(name = "Editor")
-@Table(name = "editor")
+@Entity
 public class Editor extends User {
 
 }

@@ -1,4 +1,4 @@
-package com.education.uopp.model;
+package com.education.uopp.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

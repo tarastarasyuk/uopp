@@ -1,4 +1,4 @@
-package com.education.uopp.model;
+package com.education.uopp.entity;
 
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -22,26 +22,24 @@ public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
+    @Column(name = "id")
     private Long id;
 
-    @Column(name = "email", unique = true, nullable = false)
+    @Column(unique = true, nullable = false)
     private String email;
 
-    @Column(name = "password", nullable = false)
+    @Column(nullable = false)
     private String password;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "role", nullable = false)
+    @Column(nullable = false)
     private Role role;
 
-    @Column(name = "locked", nullable = false)
     private Boolean locked = false;
 
-    @Column(name = "enabled", nullable = false)
     private Boolean enabled = false;
 
     @CreationTimestamp
-    @Column(name = "create_time")
     private LocalDateTime createTime;
 
     public User(String email, String password, Role role) {

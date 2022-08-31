@@ -1,6 +1,6 @@
 package com.education.uopp.repository;
 
-import com.education.uopp.model.User;
+import com.education.uopp.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
