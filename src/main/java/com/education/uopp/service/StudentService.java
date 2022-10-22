@@ -1,8 +1,7 @@
 package com.education.uopp.service;
 
-import com.education.uopp.entity.Student;
-import com.education.uopp.entity.VerificationToken;
-import com.education.uopp.model.StudentDTO;
+import com.education.uopp.domain.entity.Student;
+import com.education.uopp.domain.model.StudentDTO;
 
 import java.util.Optional;
 

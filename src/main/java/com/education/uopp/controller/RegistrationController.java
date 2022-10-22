@@ -1,9 +1,9 @@
 package com.education.uopp.controller;
 
-import com.education.uopp.entity.Student;
-import com.education.uopp.entity.VerificationToken;
-import com.education.uopp.event.RegistrationCompleteEvent;
-import com.education.uopp.model.StudentDTO;
+import com.education.uopp.domain.entity.Student;
+import com.education.uopp.domain.entity.VerificationToken;
+import com.education.uopp.email.event.RegistrationCompleteEvent;
+import com.education.uopp.domain.model.StudentDTO;
 import com.education.uopp.service.StudentService;
 import com.education.uopp.service.VerificationTokenService;
 import lombok.AllArgsConstructor;
