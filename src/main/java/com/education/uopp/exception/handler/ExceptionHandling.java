@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
+import org.springframework.security.authentication.LockedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -30,6 +31,11 @@ public class ExceptionHandling implements ErrorController {
         return createHttpResponse(HttpStatus.BAD_REQUEST, ACCOUNT_DISABLED);
     }
 
+    @ExceptionHandler(LockedException.class)
+    public ResponseEntity<HttpResponse> accountLockedException() {
+        return createHttpResponse(HttpStatus.BAD_REQUEST, ACCOUNT_LOCKED);
+    }
+
     @ExceptionHandler(BadCredentialsException.class)
     public ResponseEntity<HttpResponse> badCredentialsException() {
         return createHttpResponse(HttpStatus.FORBIDDEN, INCORRECT_CREDENTIALS);
@@ -41,10 +47,11 @@ public class ExceptionHandling implements ErrorController {
         return createHttpResponse(HttpStatus.UNAUTHORIZED, e.getMessage().toUpperCase());
     }
 
-    @RequestMapping(ERROR_PATH)
-    public ResponseEntity<HttpResponse> notFound404() {
-        return createHttpResponse(HttpStatus.NOT_FOUND, "There is no mapping for this URL");
-    }
+//    not to block other pages - /error is general, not applicable here
+//    @RequestMapping(ERROR_PATH)
+//    public ResponseEntity<HttpResponse> notFound404() {
+//        return createHttpResponse(HttpStatus.NOT_FOUND, "There is no mapping for this URL");
+//    }
 
     private ResponseEntity<HttpResponse> createHttpResponse(HttpStatus httpStatus, String message) {
         return new ResponseEntity<>(new HttpResponse(httpStatus.value(),

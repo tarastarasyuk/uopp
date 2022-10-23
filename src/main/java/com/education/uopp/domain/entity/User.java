@@ -1,5 +1,6 @@
 package com.education.uopp.domain.entity;
 
+import com.education.uopp.domain.Role;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.security.core.GrantedAuthority;

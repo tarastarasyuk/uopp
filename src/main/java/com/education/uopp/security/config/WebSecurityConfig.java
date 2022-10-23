@@ -1,8 +1,8 @@
 package com.education.uopp.security.config;
 
-import com.education.uopp.security.filter.JwtAccessDeniedHandler;
-import com.education.uopp.security.filter.JwtAuthenticationEntryPoint;
-import com.education.uopp.security.filter.JwtAuthorizationFilter;
+import com.education.uopp.security.jwt.filter.JwtAccessDeniedHandler;
+import com.education.uopp.security.jwt.filter.JwtAuthenticationEntryPoint;
+import com.education.uopp.security.jwt.filter.JwtAuthorizationFilter;
 import com.education.uopp.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;

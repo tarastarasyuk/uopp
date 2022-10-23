@@ -1,4 +1,4 @@
-package com.education.uopp.security.util;
+package com.education.uopp.security.jwt.util;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;

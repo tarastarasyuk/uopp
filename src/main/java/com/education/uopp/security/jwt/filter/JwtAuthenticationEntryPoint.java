@@ -1,4 +1,4 @@
-package com.education.uopp.security.filter;
+package com.education.uopp.security.jwt.filter;
 
 import com.education.uopp.constant.SecurityConstant;
 import com.education.uopp.domain.HttpResponse;

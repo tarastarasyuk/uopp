@@ -1,6 +1,6 @@
-package com.education.uopp.security.filter;
+package com.education.uopp.security.jwt.filter;
 
-import com.education.uopp.security.util.JwtTokenProvider;
+import com.education.uopp.security.jwt.util.JwtTokenProvider;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

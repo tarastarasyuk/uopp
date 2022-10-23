@@ -1,6 +1,6 @@
 package com.education.uopp.domain.model;
 
-import com.education.uopp.domain.entity.Role;
+import com.education.uopp.domain.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
