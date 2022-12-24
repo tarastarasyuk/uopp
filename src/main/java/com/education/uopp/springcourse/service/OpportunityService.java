@@ -1,15 +1,15 @@
 package com.education.uopp.springcourse.service;
 
-import com.education.uopp.springcourse.model.Opportunity;
-import com.education.uopp.springcourse.repository.OpportunityRepository;
+import com.education.uopp.springcourse.model.SCOpportunity;
+import com.education.uopp.springcourse.repository.SCOpportunityRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
 import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 
 import static java.util.Objects.nonNull;
 
@@ -17,55 +17,52 @@ import static java.util.Objects.nonNull;
 @RequiredArgsConstructor
 public class OpportunityService {
 
-    private final OpportunityRepository opportunityRepository;
+    private final SCOpportunityRepository opportunityRepository;
 
-    public Opportunity create(Opportunity entity) {
-        entity.setCreatedAt(Calendar.getInstance().getTime());
-        return opportunityRepository.create(entity);
+    public SCOpportunity create(SCOpportunity entity) {
+        return opportunityRepository.save(entity);
     }
 
-    public Opportunity findById(Long id) {
+    public SCOpportunity findById(Long id) {
         return opportunityRepository.findById(id).orElseThrow(() -> {
             throw new RuntimeException("Opportunity with id %d not found".formatted(id));
         });
     }
 
-    public List<Opportunity> findAll() {
+    public List<SCOpportunity> findAll() {
         return opportunityRepository.findAll();
     }
 
-    public Opportunity update(Opportunity source, Opportunity target) {
-        source.setCreatedAt(target.getCreatedAt());
-        return findById(opportunityRepository.update(source, target).getId());
+    public SCOpportunity update(SCOpportunity source, SCOpportunity target) {
+        BeanUtils.copyProperties(source, target, "id", "createdAt");
+        return opportunityRepository.save(target);
     }
 
-    public void delete(Long id) {
-        opportunityRepository.delete(id);
+    public void delete(SCOpportunity entity) {
+        opportunityRepository.delete(entity);
     }
 
-    public List<Opportunity> findAll(String sort) {
-        List<Opportunity> opportunityList = findAll();
+    public List<SCOpportunity> findAll(String sort) {
+        List<SCOpportunity> opportunityList = findAll();
         if (nonNull(sort)) {
             Calendar cal = Calendar.getInstance();
             cal.setTime(Calendar.getInstance().getTime());
             cal.add(Calendar.DATE, -3);
             switch (sort) {
                 case "newest" -> opportunityList = opportunityList.stream()
-                        .sorted(Comparator.comparing(Opportunity::getCreatedAt))
-                        .collect(Collectors.toList());
+                        .sorted(Comparator.comparing(SCOpportunity::getCreatedAt))
+                        .toList();
                 case "asap" -> opportunityList = opportunityList.stream()
-                        .filter(Opportunity::getASAP)
-                        .collect(Collectors.toList());
+                        .filter(SCOpportunity::getAsap)
+                        .toList();
                 case "deadline-soon" -> opportunityList = opportunityList.stream()
                         .filter(opportunity -> {
                                     long timeDiff = opportunity.getDeadline().getTime() - Calendar.getInstance().getTime().getTime();
                                     return timeDiff < TimeUnit.DAYS.toMillis(2);
                                 }
                         )
-                        .collect(Collectors.toList());
-                default -> {
-                    throw new IllegalStateException();
-                }
+                        .toList();
+                default -> throw new IllegalStateException();
             }
         }
         return opportunityList;

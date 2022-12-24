@@ -6,9 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class HomeController {
-
     @ApiOperation(value = "Root controller", notes = "Just print default message")
-
     @GetMapping("/")
     public String helloWorld() {
         return "Hello World!";

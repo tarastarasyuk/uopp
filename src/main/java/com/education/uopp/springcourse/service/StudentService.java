@@ -1,61 +1,66 @@
 package com.education.uopp.springcourse.service;
 
-import com.education.uopp.springcourse.model.Opportunity;
-import com.education.uopp.springcourse.model.Student;
-import com.education.uopp.springcourse.repository.StudentRepository;
+import com.education.uopp.springcourse.model.SCOpportunity;
+import com.education.uopp.springcourse.model.SCStudent;
+import com.education.uopp.springcourse.repository.SCStudentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
 public class StudentService {
 
-    private final StudentRepository studentRepository;
+    private final SCStudentRepository studentRepository;
 
-    public Student create(Student entity) {
-        return studentRepository.create(entity);
+    public SCStudent create(SCStudent entity) {
+        return studentRepository.save(entity);
     }
 
-    public Student findById(Long id) {
+    public SCStudent findById(Long id) {
         return studentRepository.findById(id).orElseThrow(() -> {
             throw new RuntimeException("Student with id %s not found".formatted(id));
         });
     }
 
-    public List<Student> findAll() {
+    public List<SCStudent> findAll() {
         return studentRepository.findAll();
     }
 
-    public Student update(Student source, Student target) {
-        return studentRepository.update(source, target);
+    public SCStudent update(SCStudent source, SCStudent target) {
+        if (studentRepository.existsByEmail(source.getEmail()) && !source.getEmail().equals(target.getEmail())) {
+            throw new RuntimeException("Student with email '%s' is already exists".formatted(target.getEmail()));
+        }
+        target.setFirstName(source.getFirstName());
+        target.setLastName(source.getLastName());
+        target.setAge(source.getAge());
+        target.setPhone(source.getPhone());
+        return studentRepository.save(target);
     }
 
-    public void delete(Long id) {
-        studentRepository.delete(id);
+    public void delete(SCStudent entity) {
+        studentRepository.delete(entity);
     }
 
-    public Student likeUnlikeOpportunity(Student student, Opportunity opportunity) {
-        studentRepository.likeUnlikeOpportunity(student, opportunity);
-        return findById(student.getId());
+    public void likeUnlikeOpportunity(SCStudent student, SCOpportunity opportunity) {
+        Set<SCOpportunity> studentLikedOpportunities = student.getLikedOpportunities();
+        if (studentLikedOpportunities.contains(opportunity)) {
+            studentLikedOpportunities.remove(opportunity);
+        } else {
+            studentLikedOpportunities.add(opportunity);
+        }
+        studentRepository.save(student);
     }
 
-    public Student findByEmail(String email) {
+    public SCStudent findByEmail(String email) {
         return studentRepository.findByEmail(email).orElseThrow(() -> {
             throw new RuntimeException("Student with email '%s' not found".formatted(email));
         });
     }
 
-    public boolean isLiked(Student student, Opportunity opportunity) {
-        return student.getLikedOpportunities().contains(opportunity);
-    }
-
-    public boolean isLiked(String userEmail, Opportunity opportunity) {
-        return findByEmail(userEmail).getLikedOpportunities().contains(opportunity);
-    }
-
-    public boolean checkIfEmailAvailable(String email) {
-        return studentRepository.checkIfEmailAvailable(email);
+    public boolean existsByEmail(String email) {
+        return studentRepository.existsByEmail(email);
     }
 }

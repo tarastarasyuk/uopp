@@ -1,7 +1,7 @@
 package com.education.uopp.springcourse.dto;
 
-import com.education.uopp.springcourse.model.Skill;
-import com.education.uopp.springcourse.model.Student;
+import com.education.uopp.springcourse.model.SCSkill;
+import com.education.uopp.springcourse.model.SCStudent;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -17,7 +17,7 @@ public class StudentDto {
     private Integer age;
     private String[] skills;
 
-    public Student toStudent(Set<Skill> skillSet) {
-        return new Student(email, firstName, lastName, age, phone, skillSet);
+    public SCStudent toStudent(Set<SCSkill> skillSet) {
+        return new SCStudent(email, firstName, lastName, age, phone, skillSet);
     }
 }
