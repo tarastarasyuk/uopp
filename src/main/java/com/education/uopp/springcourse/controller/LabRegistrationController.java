@@ -1,8 +1,8 @@
 package com.education.uopp.springcourse.controller;
 
 import com.education.uopp.springcourse.dto.StudentDto;
-import com.education.uopp.springcourse.model.Skill;
-import com.education.uopp.springcourse.model.Student;
+import com.education.uopp.springcourse.model.SCSkill;
+import com.education.uopp.springcourse.model.SCStudent;
 import com.education.uopp.springcourse.service.EditorService;
 import com.education.uopp.springcourse.service.SkillService;
 import com.education.uopp.springcourse.service.StudentService;
@@ -28,17 +28,15 @@ public class LabRegistrationController {
     private final EditorService editorService;
 
     @ApiOperation(value = "Sign up student", notes = "Calling this endpoint you will register new student")
-
     @PostMapping("/sign-up")
-    public ResponseEntity<Student> signUpStudent(
+    public ResponseEntity<SCStudent> signUpStudent(
             @ApiParam(name = "studentDto", required = true, type = "StudentDto", value = "Student information")
             @RequestBody StudentDto studentDto) {
-        if (!studentService.checkIfEmailAvailable(studentDto.getEmail())
-                || !editorService.checkIfEmailAvailable(studentDto.getEmail())) {
+        if (studentService.existsByEmail(studentDto.getEmail()) || editorService.existsByEmail(studentDto.getEmail())) {
             return new ResponseEntity<>(HttpStatus.IM_USED);
         }
 
-        Set<Skill> skillSet = Arrays.stream(studentDto.getSkills())
+        Set<SCSkill> skillSet = Arrays.stream(studentDto.getSkills())
                 .map(skillService::findByType)
                 .collect(Collectors.toSet());
 
