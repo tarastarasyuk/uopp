@@ -1,0 +1,1 @@
+export { reducer as opportunities } from './opportunities/reducer';

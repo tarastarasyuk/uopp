@@ -16,6 +16,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/opportunities")
+@CrossOrigin
 public class OpportunityController {
 
     private OpportunityService opportunitiesService;
