@@ -1,4 +1,4 @@
-import { SignInForm } from 'components/common/sign-in-form/SignInForm';
+import { SignInForm } from 'components/common/forms/sign-in-form/SignInForm';
 import { Layout } from 'components/layout/Layout';
 import React from 'react';
 

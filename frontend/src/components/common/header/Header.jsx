@@ -14,13 +14,15 @@ const Header = () => {
       <nav className='navigation'>
         <Link onClick={(e) => navigate('/')}>Home</Link>
         <Link onClick={(e) => navigate('/')}>Opportunities</Link>
+        <Link onClick={(e) => navigate('/editor')}>Create</Link>
       </nav>
 
-      {!auth && 
+      {!auth ?
       <div>
         <Button variant='outlined' onClick={(e) => navigate('/sign-in')}>Sign in</Button>
         <Button variant='contained' onClick={(e) => navigate('/sign-up')}>Sign up</Button>
-      </div>}
+      </div>
+      : <div style={{'width': '30px', 'height': '30px', 'borderRadius': '50%', 'background': 'red'}}></div>}
     </header>
   );
 }

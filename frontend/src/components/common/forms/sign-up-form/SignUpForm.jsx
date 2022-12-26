@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { createStudent } from 'store/student/actions';
 import { useContext } from 'react';
 import { AuthContext } from 'context/auth';
+import { useNavigate } from 'react-router-dom';
 
 const useStyles = () => makeStyles((theme) => ({
     root: {
@@ -25,6 +26,7 @@ const SignUpForm = () => {
     const [age, setAge] = useState('');
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     
     const submit = (e) => {
         e.preventDefault();
@@ -38,6 +40,7 @@ const SignUpForm = () => {
         }
         
         dispatch(createStudent(user));
+        navigate('/');
         localStorage.setItem('auth', true);
         setAuth(true);
     }

@@ -8,6 +8,7 @@ class OpportunitiesEditor {
     }
 
     create(path, payload){
+        console.log(path);
         return this._http.load(this._getUrl(path), {
             method: HttpMethod.POST,
             payload: JSON.stringify(payload),
@@ -33,7 +34,7 @@ class OpportunitiesEditor {
     }
 
     _getUrl(path = '') {
-        return `${this._baseURL}${this._basePath}/${path}`;
+        return `${this._baseURL}${this._basePath}${path}`;
     }
 
 }

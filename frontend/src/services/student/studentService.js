@@ -16,7 +16,7 @@ class Student {
     }
 
     _getUrl(path = '') {
-        return `${this._baseURL}${this._basePath}/${path}`;
+        return `${this._baseURL}${this._basePath}${path}`;
     }
 
 }

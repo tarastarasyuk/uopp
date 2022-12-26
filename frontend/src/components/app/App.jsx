@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Home, SignUp, SignIn, Profile } from 'pages';
+import { Home, SignUp, SignIn, Profile, Editor } from 'pages';
 import { useContext } from 'react';
 import { AuthContext } from 'context/auth';
 import { useEffect } from 'react';
@@ -21,6 +21,7 @@ export default function App() {
         <Route path='/' element={<Home />}/>
         <Route path='/sign-up' element={<SignUp />}/>
         <Route path='/sign-in' element={<SignIn />}/>
+        <Route path='/editor' element={<Editor />}/>
         <Route path='/profile' element={<Profile />}/>
       </Routes>
     </BrowserRouter>
