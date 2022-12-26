@@ -4,7 +4,11 @@
         "paths": {
             "@common/*": ["common/*"],
             "@components/*": ["components/*"],
-            "@services/*": ["services/*"]
+            "@context/*": ["context/*"],
+            "@pages/*": ["pages/*"],
+            "@router/*": ["router/*"],
+            "@services/*": ["services/*"],
+            "@store/*": ["store/*"]
         }
     },
     "include": ["src"]

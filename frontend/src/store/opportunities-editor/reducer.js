@@ -1,4 +1,4 @@
-import { DataStatus } from '../../common/enums';
+import { DataStatus } from 'common/enums';
 import { createReducer } from '@reduxjs/toolkit';
 import { createOpportunity, editOpportunity, deleteOpportunity } from './actions';
 

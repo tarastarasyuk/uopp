@@ -1,21 +1,20 @@
 import { DataStatus } from 'common/enums';
 import { createReducer } from '@reduxjs/toolkit';
-import { fetchOpportunities } from './actions';
+import { createStudent } from './actions';
 
 const initialState = {
-    opportunities: [],
+    student: null,
     status: DataStatus.IDLE,
 };
 
 const reducer = createReducer(initialState, (buider) => {
 
-    buider.addCase(fetchOpportunities.pending, (state) => {
+    buider.addCase(createStudent.pending, (state) => {
         state.status = DataStatus.PENDING
     });
 
-    buider.addCase(fetchOpportunities.fulfilled, (state, { payload }) => {
-        const { opportunities } = payload;
-        state.opportunities = opportunities;
+    buider.addCase(createStudent.fulfilled, (state, { payload }) => {
+        console.log(payload);
         state.status = DataStatus.SUCCESS;
     });
 

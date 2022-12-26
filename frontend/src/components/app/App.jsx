@@ -1,14 +1,16 @@
 import React from 'react';
 import './style.css';
-import { Header } from 'components/common/header/Header';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Home, SignUp, SignIn, Profile } from 'pages';
 
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Header auth={false}/>}/>
-        <Route path='/home' element={<Header auth={false}/>}/>
+        <Route path='/' element={<Home />}/>
+        <Route path='/sign-up' element={<SignUp />}/>
+        <Route path='/sign-in' element={<SignIn />}/>
+        <Route path='/profile' element={<Profile />}/>
       </Routes>
     </BrowserRouter>
   );

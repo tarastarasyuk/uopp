@@ -1,6 +1,7 @@
 import { Http } from './http/httpService';
 import { Opportunities } from './opportunities/opportunitiesService';
 import { OpportunitiesEditor } from './opportunities/opportunitiesEditorService';
+import { Student } from './student/studentService';
 
 const http = new Http();
 
@@ -14,4 +15,9 @@ const opportunitiesEditor = new OpportunitiesEditor({
     http
 })
 
-export { http, opportunities, opportunitiesEditor };
+const student = new Student({
+    baseURL: 'http://localhost:8080',
+    http
+})
+
+export { http, opportunities, opportunitiesEditor, student };
