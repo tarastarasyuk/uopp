@@ -1,8 +1,10 @@
 package com.education.uopp.springcourse.controller;
 
+import com.education.uopp.springcourse.dto.SignInDto;
 import com.education.uopp.springcourse.dto.StudentDto;
 import com.education.uopp.springcourse.model.SCSkill;
 import com.education.uopp.springcourse.model.SCStudent;
+import com.education.uopp.springcourse.model.SCUser;
 import com.education.uopp.springcourse.service.EditorService;
 import com.education.uopp.springcourse.service.SkillService;
 import com.education.uopp.springcourse.service.StudentService;
@@ -43,5 +45,20 @@ public class LabRegistrationController {
                 .collect(Collectors.toSet());
 
         return new ResponseEntity<>(studentService.create(studentDto.toStudent(skillSet)), HttpStatus.CREATED);
+    }
+
+    @ApiOperation(value = "Sign in student", notes = "Calling this endpoint you will get a user, exception otherwise")
+    @PostMapping("/sign-in")
+    public ResponseEntity<SCUser> signInStudent(
+            @ApiParam(name = "signInDto", readOnly = true, type = "SignInDto", value = "Sign in information")
+            @RequestBody SignInDto signInDto) {
+        String email = signInDto.getEmail();
+        if (studentService.existsByEmail(email)) {
+            return new ResponseEntity<>(studentService.findByEmail(email), HttpStatus.OK);
+        }
+        if (editorService.existsByEmail(email)) {
+            return new ResponseEntity<>(editorService.findByEmail(email), HttpStatus.OK);
+        }
+        throw new RuntimeException("Invalid email");
     }
 }
