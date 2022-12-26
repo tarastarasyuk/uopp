@@ -6,9 +6,11 @@
             "@components/*": ["components/*"],
             "@context/*": ["context/*"],
             "@pages/*": ["pages/*"],
+            "@providers/*": ["providers/*"],
             "@router/*": ["router/*"],
             "@services/*": ["services/*"],
-            "@store/*": ["store/*"]
+            "@store/*": ["store/*"],
+            "@utils/*": ["utils/*"]
         }
     },
     "include": ["src"]

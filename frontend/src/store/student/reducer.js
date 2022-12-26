@@ -14,7 +14,6 @@ const reducer = createReducer(initialState, (buider) => {
     });
 
     buider.addCase(createStudent.fulfilled, (state, { payload }) => {
-        console.log(payload);
         state.status = DataStatus.SUCCESS;
     });
 

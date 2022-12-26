@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
 import { TextField, Button, makeStyles } from '@material-ui/core';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createStudent } from 'store/student/actions';
-import { useEffect } from 'react';
+import { useContext } from 'react';
+import { AuthContext } from 'context/auth';
 
 const useStyles = () => makeStyles((theme) => ({
     root: {
@@ -15,6 +16,8 @@ const useStyles = () => makeStyles((theme) => ({
 }));
 
 const SignUpForm = () => {
+    const auth = useContext(AuthContext);
+    console.log(auth.auth);
     const classes = useStyles();
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -36,6 +39,7 @@ const SignUpForm = () => {
         }
         
         dispatch(createStudent(user));
+        localStorage.setItem('auth', true);
     }
 
     return (
@@ -49,4 +53,5 @@ const SignUpForm = () => {
         </form>
     )
 }
+
 export { SignUpForm };

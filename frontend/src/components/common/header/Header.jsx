@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.css';
-import { Button } from '@material-ui/core';
+import { Button, Link } from '@material-ui/core';
 import { useNavigate } from 'react-router-dom';
 
 const Header = ({ auth }) => {
@@ -8,8 +8,8 @@ const Header = ({ auth }) => {
   return(
     <header className='header'>
       <nav className='navigation'>
-        <span>Home</span>
-        <span>Opportunities</span>
+        <Link onClick={(e) => navigate('/')}>Home</Link>
+        <Link onClick={(e) => navigate('/')}>Opportunities</Link>
       </nav>
 
       {!auth && 

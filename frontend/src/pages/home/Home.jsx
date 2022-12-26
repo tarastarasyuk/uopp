@@ -15,10 +15,6 @@ const Home = () => {
     dispatch(fetchOpportunities());
   }, [dispatch]);
   
-  useEffect(() => {
-    console.log(opportunities);
-  }, [opportunities]);
-  
   return (
     <div>
         <Layout />
