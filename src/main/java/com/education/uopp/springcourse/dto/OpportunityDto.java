@@ -1,6 +1,6 @@
 package com.education.uopp.springcourse.dto;
 
-import com.education.uopp.springcourse.model.Opportunity;
+import com.education.uopp.springcourse.model.SCOpportunity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
@@ -14,7 +14,7 @@ public class OpportunityDto {
     private Boolean asap;
     private String content;
 
-    public Opportunity toOpportunity() {
-        return new Opportunity(null, name, deadline, asap, content, null);
+    public SCOpportunity toOpportunity() {
+        return new SCOpportunity(null, name, deadline, asap, content, null);
     }
 }
