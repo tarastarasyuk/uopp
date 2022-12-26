@@ -5,10 +5,4 @@ const fetchOpportunities = createAsyncThunk(ActionType.GET, async (_args, { extr
     opportunities: await extra.opportunitiesService.getAll(),
 }));
 
-const updateOpportunities = createAsyncThunk(ActionType.UPDATE, async (params, {extra}) => ({
-    opportunities: await extra.opportunitiesService.particalUpdate(params._id, {
-        ...params,
-    }),
-}))
-
-export { fetchOpportunities, updateOpportunities }
+export { fetchOpportunities }

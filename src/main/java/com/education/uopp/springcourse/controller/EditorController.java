@@ -14,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/editor/opportunities")
+@CrossOrigin
 public class EditorController {
 
     @Autowired

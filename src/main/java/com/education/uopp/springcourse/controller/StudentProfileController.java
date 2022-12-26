@@ -21,6 +21,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @AllArgsConstructor
+@CrossOrigin
 public class StudentProfileController {
 
     private StudentService studentService;

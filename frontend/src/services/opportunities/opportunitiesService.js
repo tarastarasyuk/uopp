@@ -13,14 +13,6 @@ class Opportunities {
         });
     }
 
-    particalUpdate(id, payload){
-        return this._http.load(this._getUrl(id), {
-            method: HttpMethod.PATCH,
-            payload: JSON.stringify(payload),
-            contentType: 'application/json',
-        });
-    }
-
     _getUrl(path = '') {
         return `${this._baseURL}${this._basePath}/${path}`;
     }

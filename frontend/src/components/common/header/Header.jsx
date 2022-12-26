@@ -4,6 +4,7 @@ import { Button } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchOpportunities } from 'store/opportunities/actions';
+import { createOpportunity, editOpportunity, deleteOpportunity,  } from 'store/opportunities-editor/actions';
 
 const Header = ({ auth }) => {
 
@@ -14,7 +15,11 @@ const Header = ({ auth }) => {
   useEffect(() => {
     dispatch(fetchOpportunities());
   }, [dispatch]);
-  
+
+  useEffect(() => {
+    console.log(opportunities);
+  }, [opportunities]);
+
   return(
     <header className='header'>
       <nav className='navigation'>
