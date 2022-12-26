@@ -2,9 +2,13 @@ import React from 'react';
 import './style.css';
 import { Button, Link } from '@material-ui/core';
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from 'context/auth';
 
-const Header = ({ auth }) => {
+const Header = () => {
   const navigate = useNavigate();
+  const { auth } = useContext(AuthContext);
+
   return(
     <header className='header'>
       <nav className='navigation'>

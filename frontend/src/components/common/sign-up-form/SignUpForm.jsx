@@ -16,8 +16,7 @@ const useStyles = () => makeStyles((theme) => ({
 }));
 
 const SignUpForm = () => {
-    const auth = useContext(AuthContext);
-    console.log(auth.auth);
+    const { setAuth } = useContext(AuthContext);
     const classes = useStyles();
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -40,6 +39,7 @@ const SignUpForm = () => {
         
         dispatch(createStudent(user));
         localStorage.setItem('auth', true);
+        setAuth(true);
     }
 
     return (
