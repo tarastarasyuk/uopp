@@ -8,8 +8,9 @@ class Opportunities {
         this._profile = ApiPath.PROFILE;
     }
 
-    getAll() {
-        return this._http.load(this._getUrl(), {
+    getAll(params) {
+        const query = !!params.sort ? '?' + this._getQueryString(params) : '';
+        return this._http.load(this._getUrl(query), {
             method: HttpMethod.GET,
         });
     }
@@ -17,6 +18,14 @@ class Opportunities {
     _getUrl(path = '') {
         return `${this._baseURL}${this._basePath}${path}`;
     }
+
+    _getQueryString(obj) {
+        const keyValuePairs = [];
+        for (const key in obj) {
+          keyValuePairs.push(encodeURIComponent(key) + '=' + encodeURIComponent(obj[key]));
+        }
+        return keyValuePairs.join('&');
+      }
 
 }
 

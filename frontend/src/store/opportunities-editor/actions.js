@@ -1,8 +1,10 @@
 import { ActionType } from './common';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-const fetchOpportunities = createAsyncThunk(ActionType.GET, async (_args, { extra }) => ({
-    opportunities: await extra.opportunitiesService.getAll(),
+const fetchOpportunities = createAsyncThunk(ActionType.GET, async (params, { extra }) => ({
+    opportunities: await extra.opportunitiesService.getAll({
+        ...params
+    }),
 }));
 
 const createOpportunity = createAsyncThunk(ActionType.CREATE, async (params, { extra }) => ({

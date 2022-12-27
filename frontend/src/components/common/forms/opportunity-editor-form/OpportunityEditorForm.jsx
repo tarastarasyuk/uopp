@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Radio, TextareaAutosize, FormControl, FormLabel, FormControlLabel, RadioGroup, TextField, Button } from '@material-ui/core';
+import { Radio, FormControl, FormLabel, FormControlLabel, RadioGroup, TextField, Button } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { createOpportunity } from 'store/opportunities-editor/actions';
 import { useNavigate } from 'react-router';
@@ -55,7 +55,17 @@ const OpportunityEditorForm = () => {
 
             <div className='input-wrapper'>
                 <span>Content:</span>
-                <TextareaAutosize required minRows='5' className='input' value={content} onChange={(e) => setContent(e.target.value)} style={{borderRadius: '5px'}}></TextareaAutosize>
+                <TextField
+                    required
+                    className='input'
+                    id="outlined-multiline-static"
+                    multiline
+                    minRows={4}
+                    value={content} 
+                    onChange={(e) => setContent(e.target.value)} 
+                    style={{borderRadius: '5px', background: 'white'}}
+                    variant="outlined"
+                />
             </div>
             
             <Button type='submit' onClick={submit}>Create</Button>

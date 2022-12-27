@@ -4,6 +4,7 @@ import { fetchOpportunities, createOpportunity, editOpportunity, deleteOpportuni
 
 const initialState = {
     opportunities: [],
+    opportunity: null,
     status: DataStatus.IDLE,
 };
 
@@ -23,7 +24,9 @@ const reducer = createReducer(initialState, (buider) => {
         state.status = DataStatus.PENDING;
     });
 
-    buider.addCase(createOpportunity.fulfilled, (state, { meta }) => {
+    buider.addCase(createOpportunity.fulfilled, (state, { payload }) => {
+        const { opportunity } = payload;
+        state.opportunity = opportunity;
         state.status = DataStatus.SUCCESS;
     });
 
@@ -31,13 +34,9 @@ const reducer = createReducer(initialState, (buider) => {
         state.status = DataStatus.PENDING;
     });
 
-    buider.addCase(editOpportunity.fulfilled, (state, { meta }) => {
-        const { arg } = meta;
-
-        // state.opportunities = state.opportunities.map((item) => {
-        //     return item.id === arg.id ? {...item, ...arg} : item;
-        // });
-
+    buider.addCase(editOpportunity.fulfilled, (state, { payload }) => {
+        const { opportunity } = payload;
+        state.opportunity = opportunity;
         state.status = DataStatus.SUCCESS;
     });
 
