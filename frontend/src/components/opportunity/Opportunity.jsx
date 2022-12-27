@@ -41,9 +41,9 @@ const Opportunity = ({id, name, content, like, unlike, asap}) => {
       if(student.likedOpportunities.find(opportunity => opportunity.id === id)) setLiked(true);
       else setLiked(false);
     }
-
+    console.log(liked);
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [liked]);
+  }, [student]);
 
   return (
     <div className='opportunity-wrapper'>

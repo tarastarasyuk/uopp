@@ -40,7 +40,7 @@ const Header = () => {
         <ContainedButton variant='contained' color='primary' className={classes.margin} onClick={(e) => navigate('/sign-up')}>Sign up</ContainedButton>
       </div>
       : <>{student 
-        ? <div className='avatar' onClick={(e) => navigate('/profile')}>{student.firstName[0]}</div>
+        ? <div className='avatar' onClick={(e) => navigate('/profile')}>{student.firstName[0].toUpperCase()}</div>
         : <div className='avatar' style={{background: '#594BFF'}} onClick={(e) => navigate('/profile')} />
       }</>}
     </header>

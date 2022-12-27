@@ -31,7 +31,7 @@ const SignInForm = () => {
     useEffect(() => {
         if(status === DataStatus.SUCCESS){
             navigate('/');
-            sessionStorage.setItem('id', student.student.id);
+            sessionStorage.setItem('id', student.id);
             setAuth(true);
             setStudentContext(student);
         }
