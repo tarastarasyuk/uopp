@@ -22,8 +22,8 @@ class OpportunitiesEditor {
     }
 
     edit(path, id, payload){
-        this._basePath += path;
-        return this._http.load(this._getUrl(id), {
+        const url = path + '/' + id;
+        return this._http.load(this._getUrl(url), {
             method: HttpMethod.PUT,
             payload: JSON.stringify(payload),
             contentType: 'application/json',
@@ -31,8 +31,8 @@ class OpportunitiesEditor {
     }
 
     delete(path, id){
-        this._basePath += path;
-        return this._http.load(this._getUrl(id), {
+        const url = path + '/' + id;
+        return this._http.load(this._getUrl(url), {
             method: HttpMethod.DELETE,
             contentType: 'application/json'
         });

@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { createOpportunity } from 'store/opportunities-editor/actions';
 import { useNavigate } from 'react-router';
 
-const OpportunityEditorForm = () => {
+const OpportunityCreatorForm = () => {
     const [name, setName] = useState('');
     const [deadline, setDeadline] = useState('');
     const [asap, setAsap] = useState(false);
@@ -73,4 +73,4 @@ const OpportunityEditorForm = () => {
     )
 }
 
-export { OpportunityEditorForm };
+export { OpportunityCreatorForm };
