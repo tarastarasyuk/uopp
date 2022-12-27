@@ -30,7 +30,7 @@ const OpportunityEditorForm = () => {
     }
 
     return (
-        <form className='sign-form' noValidate autoComplete='off' style={{'width': '400px'}}>
+        <form className='sign-form' noValidate autoComplete='off' style={{width: '400px'}}>
              <div className='input-wrapper'>
                 <span>Opportunity name:</span>
                 <TextField required className='input' label='Name' variant='outlined' value={name} onChange={(e) => setName(e.target.value)} style={{background: 'white'}}/>
@@ -46,7 +46,7 @@ const OpportunityEditorForm = () => {
 
                 <FormControl required component='fieldset'>
                 <FormLabel component='legend'>ASAP</FormLabel>
-                <RadioGroup className='input' row aria-label='asap' name='asap1' value={asap} onChange={(e) => setAsap(e.target.value)} style={{'display': 'flex'}}>
+                <RadioGroup className='input' row aria-label='asap' name='asap1' value={asap} onChange={(e) => setAsap(e.target.value)} style={{display: 'flex'}}>
                     <FormControlLabel value={'true'} control={<Radio />} label='Yes' />
                     <FormControlLabel value={'false'} control={<Radio />} label='No' />
                 </RadioGroup>

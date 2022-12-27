@@ -19,7 +19,7 @@ const useStyles = () => makeStyles((theme) => ({
   },
 }));
 
-const Opportunity = ({id, name, content, like, unlike}) => {
+const Opportunity = ({id, name, content, like, unlike, asap}) => {
   const classes = useStyles();
   const [liked, setLiked] = useState(false);
   const { auth } = useContext(AuthContext);
@@ -47,8 +47,9 @@ const Opportunity = ({id, name, content, like, unlike}) => {
 
   return (
     <div className='opportunity-wrapper'>
+      {asap && <span className='asap'>ASAP</span>}
       {auth && <>
-        {liked && <StarRounded style={{ color: '#F5B700', position: 'absolute', right: '10px', top: '10px' }}></StarRounded>}
+        {liked && <StarRounded style={{color: '#F5B700', position: 'absolute', right: '10px', top: '10px'}}></StarRounded>}
       </>}
       
       <div className='opportunity-header'>

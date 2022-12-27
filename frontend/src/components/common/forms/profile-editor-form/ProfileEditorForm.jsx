@@ -43,7 +43,7 @@ const ProfileEditorForm = () => {
     }, [student]);
 
     return (
-        <form className='sign-form' style={{'margin': '10px 0'}} noValidate autoComplete='off'>
+        <form className='sign-form' style={{margin: '10px 0'}} noValidate autoComplete='off'>
             <div className='input-wrapper'>
                 <span>First name:</span>
                 <TextField className='input' label='Name' variant='outlined' value={firstName} onChange={(e) => setFirstName(e.target.value)}/>

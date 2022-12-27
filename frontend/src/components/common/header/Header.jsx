@@ -36,12 +36,12 @@ const Header = () => {
 
       {!auth ?
       <div>
-        <OutlinedButton variant='outlined' color='primary' className={classes.margin} onClick={(e) => navigate('/sign-in')}>Sign in</OutlinedButton>
+        <OutlinedButton style={{marginRight: '10px'}} variant='outlined' color='primary' className={classes.margin} onClick={(e) => navigate('/sign-in')}>Sign in</OutlinedButton>
         <ContainedButton variant='contained' color='primary' className={classes.margin} onClick={(e) => navigate('/sign-up')}>Sign up</ContainedButton>
       </div>
       : <>{student 
         ? <div className='avatar' onClick={(e) => navigate('/profile')}>{student.firstName[0]}</div>
-        : <div className='avatar' style={{'background': '#594BFF'}} onClick={(e) => navigate('/profile')} />
+        : <div className='avatar' style={{background: '#594BFF'}} onClick={(e) => navigate('/profile')} />
       }</>}
     </header>
   );

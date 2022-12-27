@@ -14,8 +14,10 @@ const reducer = createReducer(initialState, (buider) => {
     });
 
     buider.addCase(createStudent.fulfilled, (state, { payload }) => {
-        state.student = payload;
+        const { student } = payload;
+        state.student = student;
         state.status = DataStatus.SUCCESS;
+        console.log(state.student, state.status);
     });
 
     buider.addCase(getStudent.pending, (state) => {
@@ -23,7 +25,8 @@ const reducer = createReducer(initialState, (buider) => {
     });
 
     buider.addCase(getStudent.fulfilled, (state, { payload }) => {
-        state.student = payload;
+        const { student } = payload;
+        state.student = student;
         state.status = DataStatus.SUCCESS;
     });
 

@@ -88,7 +88,7 @@ const Home = () => {
         <div className='opportunities-wrapper'>
           {status === DataStatus.SUCCESS && 
           opportunities.map(opportunity => 
-          <Opportunity key={opportunity.id} id={opportunity.id} name={opportunity.name} content={opportunity.content} like={like} unlike={unlike}></Opportunity>
+          <Opportunity key={opportunity.id} id={opportunity.id} name={opportunity.name} content={opportunity.content} like={like} unlike={unlike} asap={opportunity.asap}></Opportunity>
           )}
         </div>
    </div>

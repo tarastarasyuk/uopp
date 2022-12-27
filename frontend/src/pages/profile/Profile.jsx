@@ -49,7 +49,7 @@ const Profile = () => {
         <div className='liked-opportunities-wrapper'>
           {status === DataStatus.SUCCESS && 
             student.likedOpportunities.map(opportunity => 
-            <Opportunity key={opportunity.id} id={opportunity.id} name={opportunity.name} content={opportunity.content} unlike={unlike}></Opportunity>
+            <Opportunity key={opportunity.id} id={opportunity.id} name={opportunity.name} content={opportunity.content} unlike={unlike} asap={opportunity.asap}></Opportunity>
           )}
         </div>
       </div>

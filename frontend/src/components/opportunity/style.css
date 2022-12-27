@@ -26,3 +26,13 @@
     bottom: 10px;
     right: 10px;
 }
+
+.asap {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #E24B4B;
+    color: white;
+    border-radius: 4px;
+    padding: 4px 10px;
+}
