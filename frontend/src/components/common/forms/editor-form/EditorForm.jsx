@@ -30,7 +30,6 @@ const EditorForm = () => {
             asap,
             content,
         }
-        console.log(opportunity);
 
         dispatch(createOpportunity(opportunity));
     }

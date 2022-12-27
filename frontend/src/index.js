@@ -8,11 +8,11 @@ import { AppContextProvider } from 'providers/appContextProvider';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <AppContextProvider>
-      <Provider store={store}>
+    <Provider store={store}>
+      <AppContextProvider>
         <App />
-      </Provider>
-    </AppContextProvider>
+      </AppContextProvider>
+    </Provider>
   </React.StrictMode>
 );
 

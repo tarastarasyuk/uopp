@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { TextField, Button, makeStyles } from '@material-ui/core';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createStudent } from 'store/student/actions';
-import { useContext } from 'react';
 import { AuthContext } from 'context/auth';
 import { useNavigate } from 'react-router-dom';
 
@@ -41,12 +40,12 @@ const SignUpForm = () => {
         
         dispatch(createStudent(user));
         navigate('/');
-        localStorage.setItem('auth', true);
+        // sessionStorage.setItem('auth', true);
         setAuth(true);
     }
 
     return (
-        <form className={classes.root} noValidate autoComplete='off'>
+        <form className={classes.root} noValidate autoComplete='off' style={{'display': 'flex', 'flexDirection': 'column', 'width': '300px', 'margin': '0 auto'}}>
             <TextField label='Name' variant='outlined' value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
             <TextField label='Surname' variant='outlined' value={lastName} onChange={(e) => setLastName(e.target.value)}/>
             <TextField label='Email' variant='outlined' value={email} onChange={(e) => setEmail(e.target.value)}/>

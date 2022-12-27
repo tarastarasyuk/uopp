@@ -1,5 +1,6 @@
 const ActionType = {
-    CREATE: '/sign-up',
+    CREATE: 'sign-up',
+    GET: 'sign-in',
 };
 
 export { ActionType };

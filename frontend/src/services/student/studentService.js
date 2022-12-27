@@ -4,11 +4,19 @@ class Student {
     constructor({ baseURL, http }) {
         this._baseURL = baseURL;
         this._http = http;
-        this._basePath = ApiPath.STUDENT_CREATE;
+        this._basePath = ApiPath.STUDENT;
     }
 
-    create(payload){
-        return this._http.load(this._getUrl(), {
+    create(path, payload){
+        return this._http.load(this._getUrl(path), {
+            method: HttpMethod.POST,
+            payload: JSON.stringify(payload),
+            contentType: 'application/json',
+        })
+    }
+
+    getStudent(path, payload){
+        return this._http.load(this._getUrl(path), {
             method: HttpMethod.POST,
             payload: JSON.stringify(payload),
             contentType: 'application/json',

@@ -1,6 +1,6 @@
 import { DataStatus } from 'common/enums';
 import { createReducer } from '@reduxjs/toolkit';
-import { createStudent } from './actions';
+import { createStudent, getStudent } from './actions';
 
 const initialState = {
     student: null,
@@ -14,6 +14,16 @@ const reducer = createReducer(initialState, (buider) => {
     });
 
     buider.addCase(createStudent.fulfilled, (state, { payload }) => {
+        state.student = payload;
+        state.status = DataStatus.SUCCESS;
+    });
+
+    buider.addCase(getStudent.pending, (state) => {
+        state.status = DataStatus.PENDING
+    });
+
+    buider.addCase(getStudent.fulfilled, (state, { payload }) => {
+        state.student = payload;
         state.status = DataStatus.SUCCESS;
     });
 

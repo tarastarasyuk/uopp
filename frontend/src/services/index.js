@@ -2,6 +2,7 @@ import { Http } from './http/httpService';
 import { Opportunities } from './opportunities/opportunitiesService';
 import { OpportunitiesEditor } from './opportunities/opportunitiesEditorService';
 import { Student } from './student/studentService';
+import { Profile } from './profile/profileService';
 
 const http = new Http();
 
@@ -20,4 +21,9 @@ const student = new Student({
     http
 })
 
-export { http, opportunities, opportunitiesEditor, student };
+const profile = new Profile({
+    baseURL: 'http://localhost:8080',
+    http
+})
+
+export { http, opportunities, opportunitiesEditor, student, profile };

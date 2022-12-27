@@ -18,7 +18,7 @@ const reducer = createReducer(initialState, (buider) => {
         state.opportunities = opportunities;
         state.status = DataStatus.SUCCESS;
     });
-
+    
 });
 
 export { reducer };

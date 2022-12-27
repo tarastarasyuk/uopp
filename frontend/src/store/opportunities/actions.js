@@ -5,4 +5,4 @@ const fetchOpportunities = createAsyncThunk(ActionType.GET, async (_args, { extr
     opportunities: await extra.opportunitiesService.getAll(),
 }));
 
-export { fetchOpportunities }
+export { fetchOpportunities };

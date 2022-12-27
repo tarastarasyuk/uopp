@@ -1,3 +1,3 @@
 import { createContext } from 'react';
 
-export const AuthContext = createContext(localStorage.getItem('auth'));
+export const AuthContext = createContext(!!sessionStorage.getItem('id'));

@@ -5,9 +5,10 @@ class Opportunities {
         this._baseURL = baseURL;
         this._http = http;
         this._basePath = ApiPath.OPPORTUNITIES;
+        this._profile = ApiPath.PROFILE;
     }
 
-    getAll(){
+    getAll() {
         return this._http.load(this._getUrl(), {
             method: HttpMethod.GET,
         });

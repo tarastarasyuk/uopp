@@ -15,6 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/skills")
 @RequiredArgsConstructor
+@CrossOrigin
 public class SkillController {
     private final SkillService skillService;
 

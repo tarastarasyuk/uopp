@@ -7,8 +7,13 @@ class OpportunitiesEditor {
         this._basePath = ApiPath.OPPORTUNITIES_EDITOR;
     }
 
+    getAll(){
+        return this._http.load(this._getUrl(), {
+            method: HttpMethod.GET,
+        });
+    }
+    
     create(path, payload){
-        console.log(path);
         return this._http.load(this._getUrl(path), {
             method: HttpMethod.POST,
             payload: JSON.stringify(payload),

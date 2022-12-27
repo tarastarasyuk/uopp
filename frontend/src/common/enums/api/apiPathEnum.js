@@ -1,7 +1,7 @@
 const ApiPath = {
     OPPORTUNITIES: '/opportunities',
     OPPORTUNITIES_EDITOR: '/editor/opportunities',
-    STUDENT_CREATE: '/sign-up',
+    STUDENT: '/',
     PROFILE: '/profile',
 };
 
