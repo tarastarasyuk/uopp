@@ -1,0 +1,9 @@
+.profile-wrapper {
+    display: flex;
+    justify-content: space-around;
+}
+
+.liked-opportunities-wrapper {
+    display: flex;
+    flex-direction: column;
+}

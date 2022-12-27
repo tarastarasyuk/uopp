@@ -5,6 +5,7 @@ import { DataStatus } from 'common/enums';
 import { Opportunity } from 'components/opportunity/Opportunity';
 import { getProfile, unlikeOpportunity } from 'store/profile/actions';
 import { ProfileEditorForm } from 'components/common/forms/profile-editor-form/ProfileEditorForm';
+import './style.css';
 
 const Profile = () => {
   const { student, status } = useSelector((state) => state.profile);
@@ -43,13 +44,16 @@ const Profile = () => {
   return (
     <div>
       <Layout />
-      <ProfileEditorForm />
-      <div className='opportunities-wrapper'>
-        {status === DataStatus.SUCCESS && 
-          student.likedOpportunities.map(opportunity => 
-          <Opportunity key={opportunity.id} id={opportunity.id} name={opportunity.name} content={opportunity.content} unlike={unlike}></Opportunity>
-        )}
+      <div className='profile-wrapper'>
+        <ProfileEditorForm />
+        <div className='liked-opportunities-wrapper'>
+          {status === DataStatus.SUCCESS && 
+            student.likedOpportunities.map(opportunity => 
+            <Opportunity key={opportunity.id} id={opportunity.id} name={opportunity.name} content={opportunity.content} unlike={unlike}></Opportunity>
+          )}
+        </div>
       </div>
+      
     </div>
   )
 }

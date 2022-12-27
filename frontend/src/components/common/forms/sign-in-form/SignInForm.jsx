@@ -1,5 +1,5 @@
 import React, { useEffect, useContext }  from 'react'
-import { TextField, Button, makeStyles } from '@material-ui/core';
+import { TextField, Button } from '@material-ui/core';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getStudent } from 'store/student/actions';
@@ -8,17 +8,7 @@ import { AuthContext } from 'context/auth';
 import { DataStatus } from 'common/enums';
 import { StudentContext } from 'context/student';
 
-const useStyles = () => makeStyles((theme) => ({
-    root: {
-        '& > *': {
-            margin: theme.spacing(1),
-            width: '25ch',
-        },
-    },
-}));
-
 const SignInForm = () => {
-    const classes = useStyles();
     const [email, setEmail] = useState('');
 
     const { student, status } = useSelector((state) => state.student);
@@ -50,8 +40,11 @@ const SignInForm = () => {
     }, [student]);
 
     return (
-        <form className={classes.root} noValidate autoComplete='off' style={{'display': 'flex', 'flexDirection': 'column', 'width': '300px', 'margin': '0 auto'}}>
-            <TextField label='Email' variant='outlined' value={email} onChange={(e) => setEmail(e.target.value)}/>
+        <form className='sign-form' noValidate autoComplete='off'>
+            <div className='input-wrapper'>
+                <span>E-mail:</span>
+                <TextField label='Email' variant='outlined' value={email} onChange={(e) => setEmail(e.target.value)}/>
+            </div>
             <Button type='submit' onClick={submit}>Sign in</Button>
         </form>
     )

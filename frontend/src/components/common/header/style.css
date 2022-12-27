@@ -14,3 +14,14 @@
 .buttons-wrapper * {
     margin: 0 5px;
 }
+
+.avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    font-weight: 900;
+}
