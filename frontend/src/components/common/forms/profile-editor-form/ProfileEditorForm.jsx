@@ -1,9 +1,8 @@
-import React, { useContext, useState } from 'react';
+import React, { useState, useContext } from 'react'
 import { TextField, Button, makeStyles } from '@material-ui/core';
-import { useDispatch } from 'react-redux';
-import { createStudent } from 'store/student/actions';
+import { useDispatch, useSelector } from 'react-redux';
 import { AuthContext } from 'context/auth';
-import { useNavigate } from 'react-router-dom';
+import { editProfile } from 'store/profile/actions';
 
 const useStyles = () => makeStyles((theme) => ({
     root: {
@@ -14,8 +13,9 @@ const useStyles = () => makeStyles((theme) => ({
     },
 }));
 
-const SignUpForm = () => {
+const ProfileEditorForm = () => {
     const { setAuth } = useContext(AuthContext);
+    const { student } = useSelector((state) => state.profile);
     const classes = useStyles();
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -24,22 +24,19 @@ const SignUpForm = () => {
     const [age, setAge] = useState('');
 
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     
     const submit = (e) => {
         e.preventDefault();
         const user = {
+            profileId: student.id,
             firstName,
             lastName,
             email,
             age: +age,
             phone,
-            skills: [],
+            skills: student.skills,
         }
-        
-        dispatch(createStudent(user));
-        navigate('/');
-        // sessionStorage.setItem('auth', true);
+        dispatch(editProfile(user));
         setAuth(true);
     }
 
@@ -50,9 +47,9 @@ const SignUpForm = () => {
             <TextField label='Email' variant='outlined' value={email} onChange={(e) => setEmail(e.target.value)}/>
             <TextField label='Phone' variant='outlined' value={phone} onChange={(e) => setPhone(e.target.value)}/>
             <TextField label='Age' variant='outlined' value={age} onChange={(e) => setAge(e.target.value)}/>
-            <Button type='submit' onClick={submit}>Sign up</Button>
+            <Button type='submit' onClick={submit}>Confirm</Button>
         </form>
     )
 }
 
-export { SignUpForm };
+export { ProfileEditorForm };

@@ -1,12 +1,11 @@
 import { fetchOpportunities } from 'store/opportunities/actions';
 import React, { useEffect, useState } from 'react';
 import './style.css';
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux';
 import { Layout } from 'components/layout/Layout';
 import { DataStatus } from 'common/enums';
 import { Opportunity } from 'components/opportunity/Opportunity';
-import { getProfile, unlikeOpportunity } from 'store/profile/actions';
-import { likeOpportunity } from 'store/profile/actions';
+import { getProfile, likeOpportunity, unlikeOpportunity } from 'store/profile/actions';
 
 const Home = () => {
 
@@ -15,6 +14,7 @@ const Home = () => {
 
   const [liked, setLiked] = useState(false);
   const [unliked, setUnliked] = useState(false);
+  const [opportunityId, setOpportunityId] = useState();
   const { student } = useSelector((state) => state.profile);
 
   useEffect(() => {
@@ -24,6 +24,8 @@ const Home = () => {
 
   const like = (e) => {
     e.preventDefault();
+    const id = e.target.closest('.opportunity-buttons').getAttribute('opportunity-id');
+    setOpportunityId(id);
 
     const params = {
       profileId: student.id,
@@ -35,6 +37,8 @@ const Home = () => {
 
   const unlike = (e) => {
     e.preventDefault();
+    const id = e.target.closest('.opportunity-buttons').getAttribute('opportunity-id');
+    setOpportunityId(id);
 
     const params = {
       profileId: student.id,
@@ -49,10 +53,11 @@ const Home = () => {
     if(liked) {
       const params = {
         profileId: student.id,
-        opportunityId: '21',
+        opportunityId,
       }
 
       dispatch(likeOpportunity(params));
+      setLiked(false);
     }
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -63,10 +68,11 @@ const Home = () => {
     if(unliked) {
       const params = {
         profileId: student.id,
-        opportunityId: '21',
+        opportunityId,
       }
 
       dispatch(unlikeOpportunity(params));
+      setUnliked(false);
     }
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -76,9 +82,9 @@ const Home = () => {
     <div>
         <Layout />
         <div className='opportunities-wrapper'>
-          { status === DataStatus.SUCCESS && 
+          {status === DataStatus.SUCCESS && 
           opportunities.map(opportunity => 
-          <Opportunity key={opportunity.id} name={opportunity.name} content={opportunity.content} like={like} unlike={unlike}></Opportunity>
+          <Opportunity key={opportunity.id} id={opportunity.id} name={opportunity.name} content={opportunity.content} like={like} unlike={unlike}></Opportunity>
           )}
         </div>
    </div>

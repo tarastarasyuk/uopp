@@ -13,7 +13,7 @@ const useStyles = () => makeStyles((theme) => ({
     },
 }));
 
-const EditorForm = () => {
+const OpportunityEditorForm = () => {
     const classes = useStyles();
     const [name, setName] = useState('');
     const [deadline, setDeadline] = useState('');
@@ -24,10 +24,13 @@ const EditorForm = () => {
     
     const submit = (e) => {
         e.preventDefault();
+
+        const isAsap = (asap === 'true');
+
         const opportunity = {
             name,
             deadline,
-            asap,
+            asap: isAsap,
             content,
         }
 
@@ -41,8 +44,8 @@ const EditorForm = () => {
             <FormControl component='fieldset'>
             <FormLabel component='legend'>ASAP</FormLabel>
             <RadioGroup aria-label='asap' name='asap1' value={asap} onChange={(e) => setAsap(e.target.value)} >
-                <FormControlLabel value={true} control={<Radio />} label='Yes' />
-                <FormControlLabel value={false} control={<Radio />} label='No' />
+                <FormControlLabel value={'true'} control={<Radio />} label='Yes' />
+                <FormControlLabel value={'false'} control={<Radio />} label='No' />
             </RadioGroup>
             </FormControl>
             <p>Content</p>
@@ -52,4 +55,4 @@ const EditorForm = () => {
     )
 }
 
-export { EditorForm };
+export { OpportunityEditorForm };

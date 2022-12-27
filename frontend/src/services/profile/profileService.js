@@ -1,3 +1,4 @@
+import { ActionType } from 'store/profile/common';
 import { ApiPath, HttpMethod } from 'common/enums';
 
 class Profile {
@@ -13,9 +14,11 @@ class Profile {
         });
     }
 
-    editProfile() {
-        return this._http.load(this._getUrl(), {
-            method: HttpMethod.GET,
+    editProfile(id, payload) {
+        return this._http.load(this._getEditUrl(id), {
+            method: HttpMethod.PUT,
+            payload: JSON.stringify(payload),
+            contentType: 'application/json',
         });
     }
 
@@ -35,6 +38,10 @@ class Profile {
 
     _getUrl(path = '') {
         return `${this._baseURL}${this._basePath}/${path}`;
+    }
+
+    _getEditUrl(path = '') {
+        return `${this._baseURL}${this._basePath}/${path}${ActionType.SAVE}`;
     }
 
     _getLikedUrl(path = '') {

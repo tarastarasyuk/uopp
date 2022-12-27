@@ -22,7 +22,7 @@ const Header = () => {
         <Button variant='outlined' onClick={(e) => navigate('/sign-in')}>Sign in</Button>
         <Button variant='contained' onClick={(e) => navigate('/sign-up')}>Sign up</Button>
       </div>
-      : <div style={{'width': '30px', 'height': '30px', 'borderRadius': '50%', 'background': 'red'}}></div>}
+      : <div style={{'width': '30px', 'height': '30px', 'borderRadius': '50%', 'background': 'red'}} onClick={(e) => navigate('/profile')}></div>}
     </header>
   );
 }
