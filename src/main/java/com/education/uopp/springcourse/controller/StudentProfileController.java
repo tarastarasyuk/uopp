@@ -56,15 +56,19 @@ public class StudentProfileController {
             @RequestBody StudentDto studentDto,
             @ApiParam(name = "id", example = "4", required = true, type = "Long", value = "Student id to be updated")
             @PathVariable Long id) {
-        if (studentService.existsByEmail(studentDto.getEmail()) || editorService.existsByEmail(studentDto.getEmail())) {
-            return new ResponseEntity<>(HttpStatus.IM_USED);
-        }
-
         Set<SCSkill> skillSet = Arrays.stream(studentDto.getSkills())
                 .map(skillService::findByType)
                 .collect(Collectors.toSet());
 
-        SCStudent updated = studentService.update(studentDto.toStudent(skillSet), studentService.findById(id));
+        SCStudent target = studentService.findById(id);
+        SCStudent source = studentDto.toStudent(skillSet);
+
+        if (!target.getEmail().equals(source.getEmail())
+                && (studentService.existsByEmail(studentDto.getEmail()) || editorService.existsByEmail(studentDto.getEmail()))) {
+            return new ResponseEntity<>(HttpStatus.IM_USED);
+        }
+
+        SCStudent updated = studentService.update(source, target);
         return new ResponseEntity<>(updated, HttpStatus.OK);
     }
 }
