@@ -38,27 +38,27 @@ const SignUpForm = () => {
         <form className='sign-form' noValidate autoComplete='off'>
             <div className='input-wrapper'>
                 <span>First name:</span>
-                <TextField label='Name' variant='outlined' value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
+                <TextField className='input' label='Name' variant='outlined' value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
             </div>
             
             <div className='input-wrapper'>
                 <span>Last name:</span>
-                <TextField label='Surname' variant='outlined' value={lastName} onChange={(e) => setLastName(e.target.value)}/>
+                <TextField className='input' label='Surname' variant='outlined' value={lastName} onChange={(e) => setLastName(e.target.value)}/>
             </div>
             
             <div className='input-wrapper'>
                 <span>E-mail:</span>
-                <TextField label='E-mail' variant='outlined' value={email} onChange={(e) => setEmail(e.target.value)}/>
+                <TextField className='input' label='E-mail' variant='outlined' value={email} onChange={(e) => setEmail(e.target.value)}/>
             </div>
             
             <div className='input-wrapper'>
                 <span>Phone:</span>
-                <TextField label='Phone' variant='outlined' value={phone} onChange={(e) => setPhone(e.target.value)}/>
+                <TextField className='input' label='Phone' variant='outlined' value={phone} onChange={(e) => setPhone(e.target.value)}/>
             </div>
             
             <div className='input-wrapper'>
                 <span>Age:</span>
-                <TextField label='Age' variant='outlined' value={age} onChange={(e) => setAge(e.target.value)}/>
+                <TextField className='input' label='Age' variant='outlined' value={age} onChange={(e) => setAge(e.target.value)}/>
             </div>
             
             <Button type='submit' onClick={submit}>Sign up</Button>

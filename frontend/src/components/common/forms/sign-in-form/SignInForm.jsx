@@ -43,7 +43,7 @@ const SignInForm = () => {
         <form className='sign-form' noValidate autoComplete='off'>
             <div className='input-wrapper'>
                 <span>E-mail:</span>
-                <TextField label='Email' variant='outlined' value={email} onChange={(e) => setEmail(e.target.value)}/>
+                <TextField className='input' label='Email' variant='outlined' value={email} onChange={(e) => setEmail(e.target.value)}/>
             </div>
             <Button type='submit' onClick={submit}>Sign in</Button>
         </form>

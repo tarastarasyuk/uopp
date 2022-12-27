@@ -16,3 +16,7 @@
     align-items: center;
     margin: 5px;
 }
+
+.input {
+    width: 200px;
+}
