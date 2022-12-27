@@ -6,27 +6,7 @@ import { Layout } from 'components/layout/Layout';
 import { DataStatus } from 'common/enums';
 import { Opportunity } from 'components/opportunity/Opportunity';
 import { getProfile, likeOpportunity, unlikeOpportunity } from 'store/profile/actions';
-import { InputAdornment, TextField } from '@material-ui/core';
-import { Search } from '@material-ui/icons';
-
-const sortings = [
-  {
-    value: '',
-    label: '',
-  },
-  {
-    value: 'newest',
-    label: 'New',
-  },
-  {
-    value: 'asap',
-    label: 'ASAP',
-  },
-  {
-    value: 'deadline-soon',
-    label: 'Deadline',
-  },
-];
+import { SearchForm } from 'components/common/forms/search-form/SearchForm';
 
 const Home = () => {
 
@@ -100,38 +80,10 @@ const Home = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [unliked]);
 
-  const sorting = (e) => {
-    setSort(e.target.value);
-  }
-
   return (
     <div>
         <Layout />
-
-        <TextField required className='input' variant='outlined' /*value={deadline} onChange={(e) => setDeadline(e.target.value)}*/ style={{background: 'white'}} InputProps={{
-          startAdornment: (
-            <InputAdornment position='end'>
-              <Search onClick={(e) => console.log('Searching...')} style={{cursor: 'pointer'}}/>
-            </InputAdornment>
-          )
-        }}/>
-        <TextField
-            id="outlined-select-currency-native"
-            select
-            label="Sorting"
-            value={sort}
-            onChange={sorting}
-            SelectProps={{
-              native: true,
-            }}
-            variant="outlined"
-          >
-          {sortings.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </TextField>
+        <SearchForm sort={sort} setSort={setSort} />
 
         <div className='opportunities-wrapper'>
           {status === DataStatus.SUCCESS && 
