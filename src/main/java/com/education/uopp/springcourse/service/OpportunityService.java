@@ -1,5 +1,6 @@
 package com.education.uopp.springcourse.service;
 
+import com.education.uopp.service.UserService;
 import com.education.uopp.springcourse.model.SCOpportunity;
 import com.education.uopp.springcourse.repository.SCOpportunityRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,7 @@ import static java.util.Objects.nonNull;
 public class OpportunityService {
 
     private final SCOpportunityRepository opportunityRepository;
+    private final StudentService studentService;
 
     public SCOpportunity create(SCOpportunity entity) {
         return opportunityRepository.save(entity);
@@ -39,6 +41,7 @@ public class OpportunityService {
     }
 
     public void delete(SCOpportunity entity) {
+        studentService.findAll().forEach(scStudent -> scStudent.getLikedOpportunities().remove(entity));
         opportunityRepository.delete(entity);
     }
 
