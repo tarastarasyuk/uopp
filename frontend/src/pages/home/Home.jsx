@@ -4,7 +4,7 @@ import './style.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { Layout, Opportunity, SearchForm } from 'components';
 import { DataStatus } from 'common/enums';
-import { getProfile, likeOpportunity, unlikeOpportunity } from 'store/profile/actions';
+import { likeOpportunity, unlikeOpportunity } from 'store/profile/actions';
 
 const Home = () => {
 
