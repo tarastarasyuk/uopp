@@ -24,32 +24,18 @@ const Home = () => {
 
   const like = (e) => {
     e.preventDefault();
-    const id = e.target.closest('.opportunity-buttons').getAttribute('opportunity-id');
-    setOpportunityId(id);
-
-    const params = {
-      profileId: student.id,
-    }
-    
-    dispatch(getProfile(params));
+    setOpportunityId(e.target.closest('.opportunity-buttons').getAttribute('opportunity-id'));
     setLiked(true);
   }
 
   const unlike = (e) => {
     e.preventDefault();
-    const id = e.target.closest('.opportunity-buttons').getAttribute('opportunity-id');
-    setOpportunityId(id);
-
-    const params = {
-      profileId: student.id,
-    }
-    
-    dispatch(getProfile(params));
+    setOpportunityId(e.target.closest('.opportunity-buttons').getAttribute('opportunity-id'));
     setUnliked(true);
   }
 
   useEffect(() => {
-    
+
     if(liked) {
       const params = {
         profileId: student.id,
