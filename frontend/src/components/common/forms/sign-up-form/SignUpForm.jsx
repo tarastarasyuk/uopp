@@ -11,6 +11,7 @@ const SignUpForm = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const [phone, setPhone] = useState('');
     const [age, setAge] = useState('');
 
@@ -24,6 +25,7 @@ const SignUpForm = () => {
             firstName,
             lastName,
             email,
+            password,
             age: +age,
             phone,
             skills: [],
@@ -58,6 +60,11 @@ const SignUpForm = () => {
                 <TextField required className='input' label='E-mail' variant='outlined' value={email} onChange={(e) => setEmail(e.target.value)}/>
             </div>
             
+            <div className='input-wrapper'>
+                <span>Password:</span>
+                <TextField required type='password' className='input' label='E-mail' variant='outlined' value={password} onChange={(e) => setPassword(e.target.value)}/>
+            </div>
+
             <div className='input-wrapper'>
                 <span>Phone:</span>
                 <TextField required className='input' label='Phone' variant='outlined' value={phone} onChange={(e) => setPhone(e.target.value)}/>
