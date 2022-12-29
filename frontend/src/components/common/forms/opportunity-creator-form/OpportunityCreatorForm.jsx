@@ -25,8 +25,8 @@ const OpportunityCreatorForm = () => {
             content,
         }
 
-        navigate('/');
         dispatch(createOpportunity(opportunity));
+        navigate('/');
     }
 
     return (

@@ -1,13 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Radio, FormControl, FormLabel, FormControlLabel, RadioGroup, TextField, Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
 import { fetchOpportunities } from 'store/opportunities/actions';
 import moment from 'moment/moment';
-import { ContainedErrorButton } from 'components/styled/button/contained/ContainedErrorButton';
-import { OutlinedButton } from 'components/styled/button/outlined/OutlinedButton';
+import { ContainedErrorButton, OutlinedButton } from 'components';
 import { deleteOpportunity, editOpportunity } from 'store/opportunities-editor/actions';
-import { useState } from 'react';
 
 const OpportunitiesEditorForm = () => {
 
@@ -122,7 +119,7 @@ const OpportunitiesEditorForm = () => {
                         opportunity-deadline={moment.utc(opportunity.deadline).format('YYYY-MM-DD')}
                         opportunity-asap={opportunity.asap.toString()}
                         opportunity-content={opportunity.content}>
-                            <TableCell component='th' scope='row'>opp
+                            <TableCell component='th' scope='row'>
                                 {opportunity.name}
                             </TableCell>
                             <TableCell align='right'>{moment.utc(opportunity.deadline).format('YYYY-MM-DD')}</TableCell>

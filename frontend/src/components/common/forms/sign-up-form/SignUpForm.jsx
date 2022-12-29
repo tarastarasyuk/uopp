@@ -1,11 +1,10 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { TextField, Button } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { createStudent } from 'store/student/actions';
 import { AuthContext } from 'context/auth';
 import { useNavigate } from 'react-router-dom';
 import '../style.css';
-import { useEffect } from 'react';
 
 const SignUpForm = () => {
     const { setAuth } = useContext(AuthContext);

@@ -1,10 +1,8 @@
-import { Layout } from 'components/layout/Layout';
+import { Layout, ProfileEditorForm, Opportunity } from 'components';
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { DataStatus } from 'common/enums';
-import { Opportunity } from 'components/opportunity/Opportunity';
 import { getProfile, unlikeOpportunity } from 'store/profile/actions';
-import { ProfileEditorForm } from 'components/common/forms/profile-editor-form/ProfileEditorForm';
 import './style.css';
 
 const Profile = () => {

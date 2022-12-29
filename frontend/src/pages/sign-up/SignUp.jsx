@@ -1,5 +1,4 @@
-import { SignUpForm } from 'components/common/forms/sign-up-form/SignUpForm';
-import { Layout } from 'components/layout/Layout';
+import { Layout, SignUpForm } from 'components';
 import React from 'react';
 
 const SignUp = () => {

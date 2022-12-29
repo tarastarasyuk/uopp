@@ -5,7 +5,7 @@ import { AuthContext } from 'context/auth';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { StarRounded } from '@material-ui/icons';
-import { ContainedButton } from 'components/styled/button/contained/ContainedButton';
+import { ContainedButton } from 'components';
 
 const useStyles = () => makeStyles((theme) => ({
   root: {

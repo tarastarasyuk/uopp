@@ -1,5 +1,4 @@
-import { OpportunitiesEditorForm } from 'components/common/forms/opportunities-editor-form/OpportunityCreatorForm';
-import { Layout } from 'components/layout/Layout';
+import { Layout, OpportunitiesEditorForm } from 'components';
 import React from 'react';
 
 const Editor = () => {

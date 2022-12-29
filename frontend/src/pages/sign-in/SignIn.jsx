@@ -1,5 +1,4 @@
-import { SignInForm } from 'components/common/forms/sign-in-form/SignInForm';
-import { Layout } from 'components/layout/Layout';
+import { Layout, SignInForm } from 'components';
 import React from 'react';
 
 const SignIn = () => {

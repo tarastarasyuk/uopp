@@ -1,9 +1,8 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { TextField, Button } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { AuthContext } from 'context/auth';
 import { editProfile } from 'store/profile/actions';
-import { useEffect } from 'react';
 
 const ProfileEditorForm = () => {
     const { setAuth } = useContext(AuthContext);

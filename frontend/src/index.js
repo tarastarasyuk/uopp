@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from 'components/app/App';
+import { App } from 'components';
 import { store } from './store';
 import { Provider } from 'react-redux';
 import { AppContextProvider } from 'providers/appContextProvider';

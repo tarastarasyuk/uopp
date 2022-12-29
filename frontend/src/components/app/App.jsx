@@ -3,7 +3,7 @@ import './style.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Home, SignUp, SignIn, Profile, Creator, Editor } from 'pages';
 
-export default function App() {
+const App = () => {
   return (
     <BrowserRouter>
       <Routes>
@@ -18,3 +18,4 @@ export default function App() {
   );
 }
 
+export { App };

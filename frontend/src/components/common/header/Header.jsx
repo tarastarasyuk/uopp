@@ -1,12 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './style.css';
 import { makeStyles } from '@material-ui/core';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
 import { AuthContext } from 'context/auth';
-import { OutlinedButton } from 'components/styled/button/outlined/OutlinedButton';
-import { ContainedButton } from 'components/styled/button/contained/ContainedButton';
-import { ColoredLink } from 'components/styled/link/Link';
+import { OutlinedButton, ContainedButton, StyledLink } from 'components';
 import { useSelector } from 'react-redux';
 
 const useStyles = () => makeStyles((theme) => ({
@@ -33,11 +30,11 @@ const Header = () => {
   return(
     <header className='header'>
       <nav className='navigation'>
-        <ColoredLink onClick={(e) => navigate('/')} style={{color: path === '/' ? '#594BFF' : 'black'}} >Home</ColoredLink>
+        <StyledLink onClick={(e) => navigate('/')} style={{color: path === '/' ? '#594BFF' : 'black'}} >Home</StyledLink>
         {auth && 
         <>
-          <ColoredLink onClick={(e) => navigate('/creator')} style={{color: path === '/creator' ? '#594BFF' : 'black'}} >Create</ColoredLink>
-          <ColoredLink onClick={(e) => navigate('/editor')} style={{color: path === '/editor' ? '#594BFF' : 'black'}} >Edit</ColoredLink>
+          <StyledLink onClick={(e) => navigate('/creator')} style={{color: path === '/creator' ? '#594BFF' : 'black'}} >Create</StyledLink>
+          <StyledLink onClick={(e) => navigate('/editor')} style={{color: path === '/editor' ? '#594BFF' : 'black'}} >Edit</StyledLink>
         </>}
       </nav>
 

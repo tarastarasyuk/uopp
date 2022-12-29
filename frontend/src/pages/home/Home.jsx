@@ -1,17 +1,15 @@
-import { fetchOpportunities } from 'store/opportunities/actions';
+import { fetchOpportunities } from 'store/opportunities-editor/actions';
 import React, { useEffect, useState } from 'react';
 import './style.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { Layout } from 'components/layout/Layout';
+import { Layout, Opportunity, SearchForm } from 'components';
 import { DataStatus } from 'common/enums';
-import { Opportunity } from 'components/opportunity/Opportunity';
 import { getProfile, likeOpportunity, unlikeOpportunity } from 'store/profile/actions';
-import { SearchForm } from 'components/common/forms/search-form/SearchForm';
 
 const Home = () => {
 
   const dispatch = useDispatch();
-  const { opportunities, status } = useSelector((state) => state.opportunities);
+  const { opportunities, status } = useSelector((state) => state.opportunitiesEditor);
 
   const [liked, setLiked] = useState(false);
   const [unliked, setUnliked] = useState(false);

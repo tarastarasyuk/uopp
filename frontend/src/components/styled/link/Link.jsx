@@ -1,6 +1,6 @@
 import { Link, withStyles } from '@material-ui/core';
 
-export const ColoredLink = withStyles((theme) => ({
+export const StyledLink = withStyles((theme) => ({
     root: {
       color: 'black',
       '&:hover': {
