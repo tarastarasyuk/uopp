@@ -50,10 +50,10 @@ public class EditorController {
 
     @ApiOperation(value = "Delete an opportunity", notes = "Calling this endpoint you will delete an existing opportunity")
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> deleteOpportunity(
+    public ResponseEntity<Long> deleteOpportunity(
             @ApiParam(name = "id", required = true, type = "Long", value = "Path variable that defines which opportunity should be deleted")
             @PathVariable Long id) {
         opportunitiesService.delete(opportunitiesService.findById(id));
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(id, HttpStatus.OK);
     }
 }

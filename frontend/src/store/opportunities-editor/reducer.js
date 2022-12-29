@@ -48,7 +48,9 @@ const reducer = createReducer(initialState, (buider) => {
         state.status = DataStatus.PENDING;
     });
 
-    buider.addCase(deleteOpportunity.fulfilled, (state) => {
+    buider.addCase(deleteOpportunity.fulfilled, (state, { payload }) => {
+        const { opportunity } = payload;
+        state.opportunities = state.opportunities.filter(opp => opp.id !== opportunity);
         state.status = DataStatus.SUCCESS;
     });
 
