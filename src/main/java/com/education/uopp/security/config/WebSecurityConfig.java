@@ -1,10 +1,13 @@
 package com.education.uopp.security.config;
 
+import com.education.uopp.domain.Role;
 import com.education.uopp.security.jwt.filter.JwtAccessDeniedHandler;
 import com.education.uopp.security.jwt.filter.JwtAuthenticationEntryPoint;
 import com.education.uopp.security.jwt.filter.JwtAuthorizationFilter;
 import com.education.uopp.service.UserService;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,22 +19,23 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import static com.education.uopp.constant.SecurityConstant.PUBLIC_URLS;
+import static com.education.uopp.constant.SecurityConstant.*;
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class WebSecurityConfig {
 
-    private JwtAuthorizationFilter jwtAuthorizationFilter;
-    private JwtAccessDeniedHandler jwtAccessDeniedHandler;
-    private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
-    private PasswordEncoder passwordEncoder;
-    private UserService userService;
+    private final JwtAuthorizationFilter jwtAuthorizationFilter;
+    private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
+    private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+    private final PasswordEncoder passwordEncoder;
+    private final UserService userService;
+    @Value("${app.frontend-url}")
+    private String frontendApp;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -43,15 +47,16 @@ public class WebSecurityConfig {
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .authorizeHttpRequests().antMatchers(PUBLIC_URLS).permitAll()
+                .authorizeHttpRequests()
+                .antMatchers(EDITOR_URLS).hasAuthority(Role.ROLE_EDITOR.getAuthority())
+                .antMatchers(STUDENT_URLS).hasAuthority(Role.ROLE_STUDENT.getAuthority())
+                .antMatchers(PUBLIC_URLS).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().accessDeniedHandler(jwtAccessDeniedHandler)
                 .authenticationEntryPoint(jwtAuthenticationEntryPoint)
                 .and()
                 .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)
-//                .formLogin()
-//                .and().x
                 .build();
     }
 
@@ -71,7 +76,7 @@ public class WebSecurityConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:3000")
+                        .allowedOrigins(frontendApp)
                         .allowedHeaders("*")
                         .allowedMethods(
                                 HttpMethod.GET.name(),

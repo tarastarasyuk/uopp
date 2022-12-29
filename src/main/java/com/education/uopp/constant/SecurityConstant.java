@@ -12,7 +12,7 @@ public final class SecurityConstant {
     public static final String ACCESS_DENIED_MESSAGE = "You do not have a permission to access this page";
     public static final String OPTIONS_HTTP_METHOD = "OPTIONS";
     public static final String[] PUBLIC_URLS = {
-            "/hello",
+            "/",
             "/register",
             "/verifyRegistration*",
             "/resendVerificationToken*",
@@ -20,7 +20,16 @@ public final class SecurityConstant {
             "/get",
             "/sign-up",
             "/sign-in",
-//            "**"
+            "/opportunities*",
+            "/logout"
+    };
+
+    public static final String[] EDITOR_URLS = {
+            "/editor*",
+    };
+
+    public static final String[] STUDENT_URLS = {
+            "/profile*"
     };
 
 }
