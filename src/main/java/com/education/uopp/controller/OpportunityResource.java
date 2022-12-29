@@ -1,44 +1,33 @@
 package com.education.uopp.controller;
 
+import com.education.uopp.integration.feign.OpportunityFromTelegramClient;
+import com.education.uopp.springcourse.dto.OpportunityDto;
+import com.education.uopp.springcourse.model.SCOpportunity;
+import com.education.uopp.springcourse.service.OpportunityService;
 import lombok.AllArgsConstructor;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.RequestEntity;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
-import java.util.*;
+import java.util.List;
 
-/**
- * Just to understand the flow
- * TODO: Delete this test class
- */
 @RestController
 @AllArgsConstructor
 public class OpportunityResource {
 
-    @GetMapping("/get")
-    public Object getOpportunity(@RequestParam String url) {
+    private final OpportunityFromTelegramClient feignClient;
+    private final OpportunityService opportunityService;
 
-//        RestTemplate restTemplate = new RestTemplate();
-//        List<HttpMessageConverter<?>> messageConverters = new ArrayList<>();
-//        MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
-//        converter.setSupportedMediaTypes(Collections.singletonList(MediaType.ALL));
-//        messageConverters.add(converter);
-//        restTemplate.setMessageConverters(messageConverters);
-//        HttpHeaders headers = new HttpHeaders();
-//        ParameterizedTypeReference<HashMap<Integer, String>> responseType =
-//                new ParameterizedTypeReference<>() {
-//                };
-//        RequestEntity<Void> request = RequestEntity.get("http://localhost:105/getOpportunities/")
-//                .accept(MediaType.APPLICATION_JSON).build();
-//        Map<Integer, String> jsonDictionary = restTemplate.exchange(request, responseType).getBody();
-//        return jsonDictionary;
-        return url;
+    @GetMapping("/uploadOpportunites")
+    public ResponseEntity<List<SCOpportunity>> getOpportunity(@PathVariable String channelName, @PathVariable Integer q) {
+        List<OpportunityDto> opportunityDtoList = feignClient.getOpportunities(channelName, q);
+
+        List<SCOpportunity> opportunityList = opportunityDtoList.stream()
+                .map(OpportunityDto::toOpportunity).toList();
+
+        opportunityList.forEach(opportunityService::create);
+        return new ResponseEntity<>(opportunityList, HttpStatus.OK);
     }
 }
