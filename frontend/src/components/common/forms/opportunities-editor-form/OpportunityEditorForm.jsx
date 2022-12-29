@@ -42,7 +42,7 @@ const OpportunitiesEditorForm = () => {
         setId(e.target.closest('.opportunity-row').getAttribute('opportunity-id'));
         setName(e.target.closest('.opportunity-row').getAttribute('opportunity-name'));
         setDeadline(e.target.closest('.opportunity-row').getAttribute('opportunity-deadline'));
-        setAsap(Boolean(e.target.closest('.opportunity-row').getAttribute('opportunity-asap')));
+        setAsap(e.target.closest('.opportunity-row').getAttribute('opportunity-asap') === 'true');
         setContent(e.target.closest('.opportunity-row').getAttribute('opportunity-content'));
     }
 
