@@ -10,7 +10,7 @@ class Http {
         return fetch(url, {
             method,
             headers,
-            body: payload,
+            body: payload
         })
             .then(this._checkStatus)
             .then(this._parseJSON)
