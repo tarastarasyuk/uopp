@@ -28,7 +28,7 @@ const SearchForm = ({sort, setSort}) => {
   }
   
   return (
-    <form style={{display: 'flex', justifyContent: 'center'}}>
+    <form style={{display: 'flex', justifyContent: 'center', margin: '20px auto 10px'}}>
         <TextField required className='input' variant='outlined' /*value={deadline} onChange={(e) => setDeadline(e.target.value)}*/ style={{background: 'white', marginRight: '10px', width: '30%'}} InputProps={{
           startAdornment: (
             <InputAdornment position='end'>

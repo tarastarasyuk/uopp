@@ -1,13 +1,14 @@
 import { Button, withStyles } from '@material-ui/core';
+import { theme as customTheme } from 'public/themes';
 
 export const ContainedErrorButton = withStyles((theme) => ({
     root: {
-      color: theme.palette.getContrastText('#E24B4B'),
-      backgroundColor: '#E24B4B',
+      color: theme.palette.getContrastText(customTheme.colors.error),
+      backgroundColor: customTheme.colors.error,
       textTransform: 'capitalize',
       fontWeight: '700',
       '&:hover': {
-        backgroundColor: '#C33333',
+        backgroundColor: customTheme.colors.errorHover,
       },
     },
   }))(Button);

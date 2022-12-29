@@ -1,13 +1,14 @@
 import { Button, withStyles } from '@material-ui/core';
+import { theme as customTheme } from 'public/themes';
 
 export const ContainedButton = withStyles((theme) => ({
     root: {
-      color: theme.palette.getContrastText('#3273F6'),
-      backgroundColor: '#3273F6',
+      color: theme.palette.getContrastText(customTheme.colors.blue),
+      backgroundColor: customTheme.colors.blue,
       textTransform: 'capitalize',
       fontWeight: '700',
       '&:hover': {
-        backgroundColor: '#1954cb',
+        backgroundColor: customTheme.colors.blueHover,
       },
     },
   }))(Button);
