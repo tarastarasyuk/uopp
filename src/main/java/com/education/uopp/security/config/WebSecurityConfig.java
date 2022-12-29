@@ -35,8 +35,7 @@ public class WebSecurityConfig {
                 .csrf()
                 .disable()
                 // who is not specified to use our domain
-                .cors()
-                .and()
+                .cors().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeHttpRequests().antMatchers(PUBLIC_URLS).permitAll()
