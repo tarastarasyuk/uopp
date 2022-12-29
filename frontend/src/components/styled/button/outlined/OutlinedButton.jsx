@@ -3,7 +3,7 @@ import { theme as customTheme } from 'public/themes';
 
 export const OutlinedButton = withStyles((theme) => ({
     root: {
-      backgroundColor: theme.palette.getContrastText(customTheme.colors.blue),
+      backgroundColor: customTheme.colors.yellow,
       color: customTheme.colors.blue,
       border: `1px solid ${customTheme.colors.blue}`,
       textTransform: 'capitalize',
