@@ -25,6 +25,8 @@ public class StudentServiceImpl implements StudentService {
 
     private final PasswordEncoder passwordEncoder;
 
+    private final StudentMapper studentMapper;
+
     @Override
     public Student registerStudent(StudentDTO studentDTO) {
         boolean isValidEmail = emailValidator.test(studentDTO.getEmail());
@@ -50,7 +52,7 @@ public class StudentServiceImpl implements StudentService {
         studentDTO.setPassword(encodedPassword);
 
 
-        Student student = StudentMapper.INSTANCE.studentDTOtoStudent(studentDTO);
+        Student student = studentMapper.studentDTOtoStudent(studentDTO);
         return studentRepository.save(student);
     }
 

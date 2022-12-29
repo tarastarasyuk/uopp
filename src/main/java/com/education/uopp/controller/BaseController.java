@@ -32,7 +32,7 @@ public class BaseController extends ExceptionHandling {
         return "hello";
     }
 
-    @PostMapping("/login")
+    @PostMapping("/sign-in")
     public ResponseEntity<User> login(@RequestBody User user) {
         authenticate(user.getEmail(), user.getPassword());
         User loginUser = (User) userService.loadUserByUsername(user.getEmail());

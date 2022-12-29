@@ -17,7 +17,7 @@ public class LoginAttemptService {
     private static final int MAXIMUM_NUMBER_OF_ATTEMPT = 5;
     private static final int ATTEMPT_INCREMENT = 1;
     private static final int CACHE_ENTRIES = 100;
-    private static final int LOCKED_DURATION = 15;
+    private static final int LOCKED_DURATION = 5;
     private final LoadingCache<String, Integer> loginAttemptCache;
 
     public LoginAttemptService() {

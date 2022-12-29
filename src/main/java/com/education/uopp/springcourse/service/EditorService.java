@@ -1,6 +1,6 @@
 package com.education.uopp.springcourse.service;
 
-import com.education.uopp.springcourse.model.SCEditor;
+import com.education.uopp.domain.entity.Editor;
 import com.education.uopp.springcourse.repository.SCEditorRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,21 +13,21 @@ public class EditorService {
 
     private final SCEditorRepository editorRepository;
 
-    public SCEditor create(SCEditor entity) {
+    public Editor create(Editor entity) {
         return editorRepository.save(entity);
     }
 
-    public SCEditor findById(Long id) {
+    public Editor findById(Long id) {
         return editorRepository.findById(id).orElseThrow(() -> {
             throw new RuntimeException("Editor with id %d not found".formatted(id));
         });
     }
 
-    public List<SCEditor> findAll() {
+    public List<Editor> findAll() {
         return editorRepository.findAll();
     }
 
-    public SCEditor update(SCEditor source, SCEditor target) {
+    public Editor update(Editor source, Editor target) {
         if (editorRepository.existsByEmail(source.getEmail()) && !source.getEmail().equals(target.getEmail())) {
             throw new RuntimeException("Editor with email '%s' is already exists".formatted(target.getEmail()));
         }
@@ -35,11 +35,11 @@ public class EditorService {
         return editorRepository.save(target);
     }
 
-    public void delete(SCEditor entity) {
+    public void delete(Editor entity) {
         editorRepository.delete(entity);
     }
 
-    public SCEditor findByEmail(String email) {
+    public Editor findByEmail(String email) {
         return editorRepository.findByEmail(email).orElseThrow(() -> {
             throw new RuntimeException("Editor with email '%s' not found".formatted(email));
         });

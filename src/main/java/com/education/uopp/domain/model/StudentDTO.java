@@ -22,4 +22,10 @@ public class StudentDTO {
 
     private String gender;
 
+    private Integer age;
+
+    private String phone;
+
+    private String[] skills;
+
 }

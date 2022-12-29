@@ -1,7 +1,7 @@
 package com.education.uopp.springcourse.service;
 
+import com.education.uopp.domain.entity.Student;
 import com.education.uopp.springcourse.model.SCOpportunity;
-import com.education.uopp.springcourse.model.SCStudent;
 import com.education.uopp.springcourse.repository.SCStudentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,21 +15,21 @@ public class StudentService {
 
     private final SCStudentRepository studentRepository;
 
-    public SCStudent create(SCStudent entity) {
+    public Student create(Student entity) {
         return studentRepository.save(entity);
     }
 
-    public SCStudent findById(Long id) {
+    public Student findById(Long id) {
         return studentRepository.findById(id).orElseThrow(() -> {
             throw new RuntimeException("Student with id %s not found".formatted(id));
         });
     }
 
-    public List<SCStudent> findAll() {
+    public List<Student> findAll() {
         return studentRepository.findAll();
     }
 
-    public SCStudent update(SCStudent source, SCStudent target) {
+    public Student update(Student source, Student target) {
         if (studentRepository.existsByEmail(source.getEmail()) && !source.getEmail().equals(target.getEmail())) {
             throw new RuntimeException("Student with email '%s' is already exists".formatted(target.getEmail()));
         }
@@ -40,11 +40,11 @@ public class StudentService {
         return studentRepository.save(target);
     }
 
-    public void delete(SCStudent entity) {
+    public void delete(Student entity) {
         studentRepository.delete(entity);
     }
 
-    public void likeUnlikeOpportunity(SCStudent student, SCOpportunity opportunity) {
+    public void likeUnlikeOpportunity(Student student, SCOpportunity opportunity) {
         Set<SCOpportunity> studentLikedOpportunities = student.getLikedOpportunities();
         if (studentLikedOpportunities.contains(opportunity)) {
             studentLikedOpportunities.remove(opportunity);
@@ -54,7 +54,7 @@ public class StudentService {
         studentRepository.save(student);
     }
 
-    public SCStudent findByEmail(String email) {
+    public Student findByEmail(String email) {
         return studentRepository.findByEmail(email).orElseThrow(() -> {
             throw new RuntimeException("Student with email '%s' not found".formatted(email));
         });

@@ -25,7 +25,7 @@ public class RegistrationController {
     private ApplicationEventPublisher publisher;
 
 
-    @PostMapping("/register")
+    @PostMapping("/sign-up")
     public ResponseEntity<Student> registerStudent(@RequestBody StudentDTO studentDTO, final HttpServletRequest request) {
         Student student = studentService.registerStudent(studentDTO);
         VerificationToken verificationToken = verificationTokenService.generateVerificationTokenForUser(student);

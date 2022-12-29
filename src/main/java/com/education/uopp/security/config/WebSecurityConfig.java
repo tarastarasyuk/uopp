@@ -38,16 +38,16 @@ public class WebSecurityConfig {
                 .cors()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//                .and()
-//                .authorizeHttpRequests().antMatchers(PUBLIC_URLS).permitAll()
-//                .anyRequest().authenticated()
+                .and()
+                .authorizeHttpRequests().antMatchers(PUBLIC_URLS).permitAll()
+                .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().accessDeniedHandler(jwtAccessDeniedHandler)
                 .authenticationEntryPoint(jwtAuthenticationEntryPoint)
                 .and()
                 .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)
 //                .formLogin()
-//                .and().
+//                .and().x
                 .build();
     }
 

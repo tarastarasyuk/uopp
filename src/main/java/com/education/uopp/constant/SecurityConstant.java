@@ -17,7 +17,9 @@ public final class SecurityConstant {
             "/verifyRegistration*",
             "/resendVerificationToken*",
             "/login",
-            "/get"
+            "/get",
+            "/sign-up",
+            "/sign-in",
 //            "**"
     };
 

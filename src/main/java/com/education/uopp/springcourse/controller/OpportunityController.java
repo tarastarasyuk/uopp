@@ -1,7 +1,7 @@
 package com.education.uopp.springcourse.controller;
 
+import com.education.uopp.domain.entity.Student;
 import com.education.uopp.springcourse.model.SCOpportunity;
-import com.education.uopp.springcourse.model.SCStudent;
 import com.education.uopp.springcourse.service.OpportunityService;
 import com.education.uopp.springcourse.service.StudentService;
 import io.swagger.annotations.ApiOperation;
@@ -32,29 +32,29 @@ public class OpportunityController {
 
     @ApiOperation(value = "Like opportunity", notes = "Calling this endpoint you will set this opportunity for current user as liked.")
     @PutMapping("/profile/{studentId}/like/{opportunityId}")
-    public ResponseEntity<SCStudent> likeOpportunity(
+    public ResponseEntity<Student> likeOpportunity(
             @ApiParam(name = "studentId", example = "3", required = true, type = "String", value = "Student id")
             @PathVariable Long studentId,
             @ApiParam(name = "opportunityId", example = "4", required = true, type = "String", value = "Opportunity id to be liked")
             @PathVariable Long opportunityId) {
-        SCStudent student = studentService.findById(studentId);
+        Student student = studentService.findById(studentId);
         toggleLike(opportunityId, student);
         return new ResponseEntity<>(student, HttpStatus.OK);
     }
 
     @ApiOperation(value = "Unlike opportunity", notes = "Calling this endpoint you will set this opportunity for current user as unliked.")
     @PutMapping("/profile/{studentId}/unlike/{opportunityId}")
-    public ResponseEntity<SCStudent> unlikeOpportunity(
+    public ResponseEntity<Student> unlikeOpportunity(
             @ApiParam(name = "studentId", example = "3", required = true, type = "String", value = "Student id")
             @PathVariable Long studentId,
             @ApiParam(name = "opportunityId", example = "4", required = true, type = "String", value = "Opportunity id to be unliked")
             @PathVariable Long opportunityId) {
-        SCStudent student = studentService.findById(studentId);
+        Student student = studentService.findById(studentId);
         toggleLike(opportunityId, student);
         return new ResponseEntity<>(student, HttpStatus.OK);
     }
 
-    private void toggleLike(Long opportunityId, SCStudent student) {
+    private void toggleLike(Long opportunityId, Student student) {
         studentService.likeUnlikeOpportunity(student, opportunitiesService.findById(opportunityId));
     }
 }
