@@ -1,19 +1,42 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './style.css';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Home, SignUp, SignIn, Profile, Creator, Editor } from 'pages';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+import { publicRoutes, privateRoutes } from 'router';
+import { AuthContext } from 'context/auth';
 
 const App = () => {
+
+  const { auth } = useContext(AuthContext); 
+
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<Home />}/>
-        <Route path='/sign-up' element={<SignUp />}/>
-        <Route path='/sign-in' element={<SignIn />}/>
-        <Route path='/creator' element={<Creator />}/>
-        <Route path='/editor' element={<Editor />}/>
-        <Route path='/profile' element={<Profile />}/>
-      </Routes>
+        { auth
+        ? <Routes>
+            {privateRoutes.map(route =>
+                <Route
+                    key={route.path}
+                    element={route.element}
+                    path={route.path}
+                    exact={route.exact}
+                />
+            )}
+
+            <Route path="*" element={<Navigate to ="/" />}/>
+        </Routes>
+        
+        : <Routes>
+            {publicRoutes.map(route =>
+                <Route
+                    key={route.path}
+                    element={route.element}
+                    path={route.path}
+                    exact={route.exact}
+                />
+            )}
+
+            <Route path="*" element={<Navigate to ="/sign-in" />}/>
+        </Routes>
+        } 
     </BrowserRouter>
   );
 }
