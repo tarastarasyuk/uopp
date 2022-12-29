@@ -9,6 +9,7 @@ import { StudentContext } from 'context/student';
 
 const SignInForm = () => {
     const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
     const { student, status } = useSelector((state) => state.student);
     const { setAuth } = useContext(AuthContext);
@@ -22,6 +23,7 @@ const SignInForm = () => {
 
         const studentGet = {
             email,
+            password,
         }
 
         dispatch(getStudent(studentGet));
@@ -43,6 +45,10 @@ const SignInForm = () => {
             <div className='input-wrapper'>
                 <span>E-mail:</span>
                 <TextField className='input' label='Email' variant='outlined' value={email} onChange={(e) => setEmail(e.target.value)}/>
+            </div>
+            <div className='input-wrapper'>
+                <span>Password:</span>
+                <TextField className='input' type='password' label='Email' variant='outlined' value={password} onChange={(e) => setPassword(e.target.value)}/>
             </div>
             <Button type='submit' onClick={submit}>Sign in</Button>
         </form>
