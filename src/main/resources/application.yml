@@ -23,3 +23,5 @@ spring:
       ddl-auto: update
 jwt:
   secret: 'test-secret'
+app:
+  frontend-url: "http://localhost:3000"

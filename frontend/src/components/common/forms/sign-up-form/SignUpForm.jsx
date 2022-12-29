@@ -14,6 +14,7 @@ const SignUpForm = () => {
     const [password, setPassword] = useState('');
     const [phone, setPhone] = useState('');
     const [age, setAge] = useState('');
+    const [gender, setGender] = useState('');
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -29,6 +30,7 @@ const SignUpForm = () => {
             age: +age,
             phone,
             skills: [],
+            gender,
         }
         
         dispatch(createStudent(user));
@@ -63,6 +65,11 @@ const SignUpForm = () => {
             <div className='input-wrapper'>
                 <span>Password:</span>
                 <TextField required type='password' className='input' label='E-mail' variant='outlined' value={password} onChange={(e) => setPassword(e.target.value)}/>
+            </div>
+            
+            <div className='input-wrapper'>
+                <span>Gender:</span>
+                <TextField className='input' label='Gender' variant='outlined' value={gender} onChange={(e) => setGender(e.target.value)}/>
             </div>
 
             <div className='input-wrapper'>

@@ -12,6 +12,7 @@ const ProfileEditorForm = () => {
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [age, setAge] = useState('');
+    const [gender, setGender] = useState('');
 
     const dispatch = useDispatch();
     
@@ -25,6 +26,7 @@ const ProfileEditorForm = () => {
             age: +age,
             phone,
             skills: student.skills,
+            gender,
         }
         
         dispatch(editProfile(user));
@@ -38,6 +40,7 @@ const ProfileEditorForm = () => {
             setEmail(student.email);
             setPhone(student.phone);
             setAge(student.age);
+            setGender(student.gender);
         }
     }, [student]);
 
@@ -56,6 +59,11 @@ const ProfileEditorForm = () => {
             <div className='input-wrapper'>
                 <span>E-mail:</span>
                 <TextField className='input' label='E-mail' variant='outlined' value={email} onChange={(e) => setEmail(e.target.value)}/>
+            </div>
+
+            <div className='input-wrapper'>
+                <span>Gender:</span>
+                <TextField className='input' label='Gender' variant='outlined' value={email} onChange={(e) => setGender(e.target.value)}/>
             </div>
             
             <div className='input-wrapper'>
