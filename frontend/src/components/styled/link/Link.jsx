@@ -4,7 +4,7 @@ export const StyledLink = withStyles((theme) => ({
     root: {
       color: 'black',
       '&:hover': {
-        color: '#594BFF',
+        color: '#3273F6',
         textDecoration: 'none',
         cursor: 'pointer',
       },

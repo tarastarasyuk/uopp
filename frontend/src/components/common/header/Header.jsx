@@ -30,11 +30,11 @@ const Header = () => {
   return(
     <header className='header'>
       <nav className='navigation'>
-        <StyledLink onClick={(e) => navigate('/')} style={{color: path === '/' ? '#594BFF' : 'black'}} >Home</StyledLink>
+        <StyledLink onClick={(e) => navigate('/')} style={{color: path === '/' ? '#3273F6' : 'black'}} >Home</StyledLink>
         {auth && 
         <>
-          <StyledLink onClick={(e) => navigate('/creator')} style={{color: path === '/creator' ? '#594BFF' : 'black'}} >Create</StyledLink>
-          <StyledLink onClick={(e) => navigate('/editor')} style={{color: path === '/editor' ? '#594BFF' : 'black'}} >Edit</StyledLink>
+          <StyledLink onClick={(e) => navigate('/creator')} style={{color: path === '/creator' ? '#3273F6' : 'black'}} >Create</StyledLink>
+          <StyledLink onClick={(e) => navigate('/editor')} style={{color: path === '/editor' ? '#3273F6' : 'black'}} >Edit</StyledLink>
         </>}
       </nav>
 
@@ -45,7 +45,7 @@ const Header = () => {
       </div>
       : <>{student
         ? <div className='avatar' onClick={(e) => navigate('/profile')}>{student.firstName[0].toUpperCase()}</div>
-        : <div className='avatar' style={{background: '#594BFF'}} onClick={(e) => navigate('/profile')} />
+        : <div className='avatar' style={{background: '#3273F6'}} onClick={(e) => navigate('/profile')} />
       }</>}
     </header>
   );

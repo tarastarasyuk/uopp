@@ -6,6 +6,9 @@
     border-bottom: 1px solid black;
     padding: 0 10% 0 20%;
     margin-bottom: 20px;
+    font-family: 'GFS Neohellenic Bold';
+    font-weight: 700;
+    background-color: #E2FE52;
 }
 
 .navigation * {
@@ -25,4 +28,5 @@
     align-items: center;
     border: 1px solid black;
     font-weight: 900;
+    cursor: pointer;
 }
