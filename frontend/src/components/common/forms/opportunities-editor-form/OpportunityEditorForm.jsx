@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Radio, FormControl, FormLabel, FormControlLabel, RadioGroup, TextField, Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchOpportunities } from 'store/opportunities/actions';
 import moment from 'moment/moment';
 import { ContainedErrorButton, OutlinedButton } from 'components';
-import { deleteOpportunity, editOpportunity } from 'store/opportunities-editor/actions';
+import { fetchOpportunities, deleteOpportunity, editOpportunity } from 'store/opportunities-editor/actions';
 
 const OpportunitiesEditorForm = () => {
 
@@ -16,11 +15,11 @@ const OpportunitiesEditorForm = () => {
     const [id, setId] = useState();
 
     const dispatch = useDispatch();
-    const { opportunities } = useSelector((state) => state.opportunities);
+    const { opportunities } = useSelector((state) => state.opportunitiesEditor);
 
     useEffect(() => {
         dispatch(fetchOpportunities());
-    }, [dispatch, opportunities]);
+    }, [dispatch]);
 
     const submit = (e) => {
         e.preventDefault();

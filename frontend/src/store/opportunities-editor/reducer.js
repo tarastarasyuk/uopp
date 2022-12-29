@@ -36,7 +36,11 @@ const reducer = createReducer(initialState, (buider) => {
 
     buider.addCase(editOpportunity.fulfilled, (state, { payload }) => {
         const { opportunity } = payload;
-        state.opportunity = opportunity;
+        
+        state.opportunities = state.opportunities.map((opp) => {
+            return opp.id === opportunity.id ? {...opp, ...opportunity} : opp;
+        });
+
         state.status = DataStatus.SUCCESS;
     });
 

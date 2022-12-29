@@ -1,6 +1,7 @@
 .opportunity-wrapper {
     border-radius: 5px;
     min-width: 250px;
+    width: 40%;
     min-height: 150px;
     position: relative;
     background-color: #F8F8F8;

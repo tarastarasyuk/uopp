@@ -37,6 +37,7 @@ const SearchForm = ({sort, setSort}) => {
           )
         }}/>
         <TextField
+            style={{width: '10%'}}
             id="outlined-select-currency-native"
             select
             label="Sorting"
