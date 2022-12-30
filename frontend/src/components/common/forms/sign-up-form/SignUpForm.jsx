@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import '../style.css';
 import { DataStatus } from 'common/enums';
 import { ToastContainer, toast } from 'react-toastify';
+import { notify } from '../sign-in-form/SignInForm';
 
 const notifyError = () => {
 
@@ -58,6 +59,7 @@ const SignUpForm = () => {
         }
         
         dispatch(createStudent(user));
+        notify();
     }
 
     useEffect(() => {

@@ -21,7 +21,7 @@ public class SCOpportunity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false)
+    @Column(unique = true)
     private Long postId;
 
     @Column(nullable = false)

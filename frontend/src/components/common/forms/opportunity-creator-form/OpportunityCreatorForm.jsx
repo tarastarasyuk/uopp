@@ -3,6 +3,8 @@ import { Radio, FormControl, FormLabel, FormControlLabel, RadioGroup, TextField,
 import { useDispatch } from 'react-redux';
 import { createOpportunity } from 'store/opportunities-editor/actions';
 import { useNavigate } from 'react-router';
+import { fetchOpportunitiesFromTelegram } from 'store/opportunities-editor/actions';
+import { OutlinedButton } from 'components/styled/button';
 
 const OpportunityCreatorForm = () => {
     const [name, setName] = useState('');
@@ -69,6 +71,7 @@ const OpportunityCreatorForm = () => {
             </div>
             
             <Button type='submit' onClick={submit}>Create</Button>
+        <OutlinedButton style={{marginRight: '10px'}} variant='outlined' color='primary' onClick={(e) => dispatch(fetchOpportunitiesFromTelegram())}>Get opportunities</OutlinedButton>
         </form>
     )
 }

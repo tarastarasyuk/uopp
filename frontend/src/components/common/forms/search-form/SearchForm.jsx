@@ -1,9 +1,6 @@
 import React from 'react';
 import { InputAdornment, TextField } from '@material-ui/core';
 import { Search } from '@material-ui/icons';
-import { OutlinedButton } from 'components/styled/button';
-import { useDispatch } from 'react-redux';
-import { fetchOpportunitiesFromTelegram } from 'store/opportunities-editor/actions';
 
 const sortings = [
     {
@@ -25,8 +22,6 @@ const sortings = [
   ];
   
 const SearchForm = ({sort, setSort}) => {
-    
-  const dispatch = useDispatch();
 
   const sorting = (e) => {
     setSort(e.target.value);
@@ -59,7 +54,6 @@ const SearchForm = ({sort, setSort}) => {
             </option>
           ))}
         </TextField>
-        <OutlinedButton style={{marginRight: '10px'}} variant='outlined' color='primary' onClick={(e) => dispatch(fetchOpportunitiesFromTelegram())}>Get opportunities</OutlinedButton>
     </form>
   )
 }
