@@ -48,8 +48,9 @@ const ProfileEditorForm = () => {
     }, [student]);
 
     const logout = (e) => {
-        sessionStorage.removeItem('token'); 
-        navigate('/'); 
+        sessionStorage.removeItem('id');
+        sessionStorage.removeItem('token');
+        navigate('/');
         setAuth(false);
     }
 

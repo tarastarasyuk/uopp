@@ -44,10 +44,14 @@ const SignInForm = () => {
         }
 
         axios.post('http://localhost:8080/sign-in', {...studentDto})
-        .then(res => sessionStorage.setItem('token', res.data));
+        .then(res => {
+            console.log(res.data)
+            sessionStorage.setItem('id', res.data.id)
+            sessionStorage.setItem('token', res.data.token)
+        });
         
         setStudentContext(student);
-        navigate('/');
+        navigate('/profile');
         setAuth(true);
     }
 

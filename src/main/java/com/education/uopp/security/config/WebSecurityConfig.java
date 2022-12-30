@@ -5,7 +5,6 @@ import com.education.uopp.security.jwt.filter.JwtAccessDeniedHandler;
 import com.education.uopp.security.jwt.filter.JwtAuthenticationEntryPoint;
 import com.education.uopp.security.jwt.filter.JwtAuthorizationFilter;
 import com.education.uopp.service.UserService;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -43,7 +42,7 @@ public class WebSecurityConfig {
                 .csrf()
                 .disable()
                 // who is not specified to use our domain
-                .cors().disable()
+                .cors().and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeHttpRequests()

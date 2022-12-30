@@ -48,7 +48,6 @@ const SignUpForm = () => {
 
     useEffect(() => {
         if(student){
-            sessionStorage.setItem('id', student.id);
             navigate('/sign-in');
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
