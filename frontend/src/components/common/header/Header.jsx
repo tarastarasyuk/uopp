@@ -33,10 +33,8 @@ const Header = () => {
 
   useEffect(() => {
     const token = sessionStorage.getItem('token');
-    console.log(token);
     if(token) {
       const decode = jwtDecode(token);
-      
       setEditor(decode.authorities[0] === roles.EDITOR);
     }
 
