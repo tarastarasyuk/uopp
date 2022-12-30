@@ -32,7 +32,7 @@ const SignInForm = () => {
         });
 
     useEffect(() => {
-        if(!sessionStorage.getItem('token') && statusCode === 200 && student) notify();
+        if(!sessionStorage.getItem('token') && statusCode === 200) notify();
     }, []);
 
     const submit = (e) => {
