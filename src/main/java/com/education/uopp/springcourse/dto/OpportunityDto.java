@@ -15,6 +15,6 @@ public class OpportunityDto {
     private String content;
 
     public SCOpportunity toOpportunity() {
-        return new SCOpportunity(null, name, deadline, asap, content, null);
+        return new SCOpportunity();
     }
 }

@@ -1,6 +1,5 @@
 package com.education.uopp.springcourse.service;
 
-import com.education.uopp.service.UserService;
 import com.education.uopp.springcourse.model.SCOpportunity;
 import com.education.uopp.springcourse.repository.SCOpportunityRepository;
 import lombok.RequiredArgsConstructor;
@@ -69,5 +68,9 @@ public class OpportunityService {
             }
         }
         return opportunityList;
+    }
+
+    public boolean existsByPostIdAndPostIdIsNotNull(Long postId) {
+        return opportunityRepository.existsByPostIdAndPostIdIsNotNull(postId);
     }
 }
