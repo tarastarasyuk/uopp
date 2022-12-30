@@ -1,9 +1,10 @@
 import { combineReducers, configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
-import { opportunities, opportunitiesEditor, student, profile } from './rootReducer';
+import { opportunities, opportunitiesEditor, student, profile, telegramOpportunities } from './rootReducer';
 import { opportunities as opportunitiesService } from '../services';
 import { opportunitiesEditor as opportunitiesEditorService } from '../services';
 import { student as studentService } from '../services';
 import { profile as profileService } from '../services';
+import { telegramOpportunities as telegramOpportunitiesService } from '../services';
 
 const  middleware = getDefaultMiddleware({
   thunk: {
@@ -12,6 +13,7 @@ const  middleware = getDefaultMiddleware({
         opportunitiesEditorService, 
         studentService,
         profileService,
+        telegramOpportunitiesService,
     }
   }
 });
@@ -22,6 +24,7 @@ const store = configureStore({
         opportunitiesEditor,
         student,
         profile,
+        telegramOpportunities,
     }),
     middleware,
     

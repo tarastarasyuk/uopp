@@ -3,6 +3,7 @@ import { Opportunities } from './opportunities/opportunitiesService';
 import { OpportunitiesEditor } from './opportunities/opportunitiesEditorService';
 import { Student } from './student/studentService';
 import { Profile } from './profile/profileService';
+import { TelegramOpportunities } from './opportunities/telegramOpportunitiesService';
 
 const http = new Http();
 
@@ -26,4 +27,10 @@ const profile = new Profile({
     http
 })
 
-export { http, opportunities, opportunitiesEditor, student, profile };
+
+const telegramOpportunities = new TelegramOpportunities({
+    baseURL: 'http://localhost:8080',
+    http
+})
+
+export { http, opportunities, opportunitiesEditor, student, profile, telegramOpportunities };
