@@ -7,7 +7,14 @@ class OpportunitiesEditor {
         this._basePath = ApiPath.OPPORTUNITIES_EDITOR;
     }
 
-    getAll(){
+    getAll(params) {
+        const query = !!params.sort ? '?' + this._getQueryString(params) : '';
+        return this._http.load(this._getUrl(query), {
+            method: HttpMethod.GET,
+        });
+    }
+
+    getAllFromTelegram(){
         return this._http.load(this._getUrl(), {
             method: HttpMethod.GET,
         });
@@ -41,6 +48,14 @@ class OpportunitiesEditor {
     _getUrl(path = '') {
         return `${this._baseURL}${this._basePath}${path}`;
     }
+
+    _getQueryString(obj) {
+        const keyValuePairs = [];
+        for (const key in obj) {
+          keyValuePairs.push(encodeURIComponent(key) + '=' + encodeURIComponent(obj[key]));
+        }
+        return keyValuePairs.join('&');
+      }
 
 }
 

@@ -7,6 +7,12 @@ const fetchOpportunities = createAsyncThunk(ActionType.GET, async (params, { ext
     }),
 }));
 
+const fetchOpportunitiesFromTelegram = createAsyncThunk(ActionType.TELEGRAM, async (params, { extra }) => ({
+    opportunities: await extra.opportunitiesService.getAllFromTelegram({
+        ...params
+    }),
+}));
+
 const createOpportunity = createAsyncThunk(ActionType.CREATE, async (params, { extra }) => ({
     opportunity: await extra.opportunitiesEditorService.create(ActionType.CREATE, {
         ...params,
@@ -24,4 +30,4 @@ const deleteOpportunity = createAsyncThunk(ActionType.DELETE, async (params, { e
 }));
 
 
-export { fetchOpportunities, createOpportunity, editOpportunity, deleteOpportunity }
+export { fetchOpportunities, fetchOpportunitiesFromTelegram, createOpportunity, editOpportunity, deleteOpportunity }

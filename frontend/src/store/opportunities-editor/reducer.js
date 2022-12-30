@@ -1,6 +1,6 @@
 import { DataStatus } from 'common/enums';
 import { createReducer } from '@reduxjs/toolkit';
-import { fetchOpportunities, createOpportunity, editOpportunity, deleteOpportunity } from './actions';
+import { fetchOpportunities, fetchOpportunitiesFromTelegram, createOpportunity, editOpportunity, deleteOpportunity } from './actions';
 
 const initialState = {
     opportunities: [],
@@ -15,6 +15,16 @@ const reducer = createReducer(initialState, (buider) => {
     });
 
     buider.addCase(fetchOpportunities.fulfilled, (state, { payload }) => {
+        const { opportunities } = payload;
+        state.opportunities = opportunities;
+        state.status = DataStatus.SUCCESS;
+    });
+
+    buider.addCase(fetchOpportunitiesFromTelegram.pending, (state) => {
+        state.status = DataStatus.PENDING;
+    });
+
+    buider.addCase(fetchOpportunitiesFromTelegram.fulfilled, (state, { payload }) => {
         const { opportunities } = payload;
         state.opportunities = opportunities;
         state.status = DataStatus.SUCCESS;

@@ -3,6 +3,7 @@ const ActionType = {
     CREATE: '/create',
     EDIT: '/edit',
     DELETE: '/delete',
+    TELEGRAM: '/uploadOpportunities',
 };
 
 export { ActionType };
