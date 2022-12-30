@@ -26,7 +26,7 @@ const reducer = createReducer(initialState, (buider) => {
 
     buider.addCase(fetchOpportunitiesFromTelegram.fulfilled, (state, { payload }) => {
         const { opportunities } = payload;
-        state.opportunities = opportunities;
+        state.opportunities = [...state.opportunities, ...opportunities];
         state.status = DataStatus.SUCCESS;
     });
     
