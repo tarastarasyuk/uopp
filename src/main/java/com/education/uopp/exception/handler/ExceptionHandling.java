@@ -1,7 +1,8 @@
 package com.education.uopp.exception.handler;
 
-import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.education.uopp.domain.HttpResponse;
+import com.education.uopp.exception.EmailTakenException;
+import com.education.uopp.exception.InvalidEmailException;
 import com.education.uopp.exception.TokenValidationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.web.servlet.error.ErrorController;
@@ -11,7 +12,6 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.LockedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
@@ -45,6 +45,16 @@ public class ExceptionHandling implements ErrorController {
     @ExceptionHandler(TokenValidationException.class)
     public ResponseEntity<HttpResponse> tokenExpiredException(TokenValidationException e) {
         return createHttpResponse(HttpStatus.UNAUTHORIZED, e.getMessage().toUpperCase());
+    }
+
+    @ExceptionHandler(InvalidEmailException.class)
+    public ResponseEntity<HttpResponse> invalidEmailException(InvalidEmailException e) {
+        return createHttpResponse(HttpStatus.BAD_REQUEST, e.getMessage().toUpperCase());
+    }
+
+    @ExceptionHandler(EmailTakenException.class)
+    public ResponseEntity<HttpResponse> invalidEmailException(EmailTakenException e) {
+        return createHttpResponse(HttpStatus.BAD_REQUEST, e.getMessage().toUpperCase());
     }
 
 //    not to block other pages - /error is general, not applicable here
