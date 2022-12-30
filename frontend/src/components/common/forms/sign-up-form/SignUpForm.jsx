@@ -1,20 +1,29 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TextField, Button } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { createStudent } from 'store/student/actions';
-import { AuthContext } from 'context/auth';
 import { useNavigate } from 'react-router-dom';
 import '../style.css';
 
+const genders = [
+    {
+      value: 'MALE',
+      label: 'male',
+    },
+    {
+      value: 'FEMALE',
+      label: 'female',
+    },
+  ];
+
 const SignUpForm = () => {
-    const { setAuth } = useContext(AuthContext);
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [phone, setPhone] = useState('');
     const [age, setAge] = useState('');
-    const [gender, setGender] = useState('');
+    const [gender, setGender] = useState('MALE');
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -34,17 +43,16 @@ const SignUpForm = () => {
         }
         
         dispatch(createStudent(user));
-        setAuth(true);
     }
 
     useEffect(() => {
         if(student){
             sessionStorage.setItem('id', student.id);
-            navigate('/');
+            navigate('/sign-in');
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [student])
-
+    }, [student]);
+    
     return (
         <form className='sign-form' noValidate autoComplete='off'>
             <div className='input-wrapper'>
@@ -64,12 +72,29 @@ const SignUpForm = () => {
             
             <div className='input-wrapper'>
                 <span>Password:</span>
-                <TextField required type='password' className='input' label='E-mail' variant='outlined' value={password} onChange={(e) => setPassword(e.target.value)}/>
+                <TextField required type='password' className='input' label='Password' variant='outlined' value={password} onChange={(e) => setPassword(e.target.value)}/>
             </div>
             
             <div className='input-wrapper'>
                 <span>Gender:</span>
-                <TextField className='input' label='Gender' variant='outlined' value={gender} onChange={(e) => setGender(e.target.value)}/>
+                <TextField
+                    required
+                    className='input'
+                    id="outlined-select-currency-native"
+                    select
+                    label="Gender"
+                    value={gender}
+                    onChange={(e) => setGender(e.target.value)}
+                    SelectProps={{
+                        native: true,
+                    }}
+                    variant="outlined">
+                    {genders.map((option) => (
+                        <option key={option.value} value={option.value}>
+                            {option.label}
+                        </option>
+                    ))}
+                </TextField>         
             </div>
 
             <div className='input-wrapper'>

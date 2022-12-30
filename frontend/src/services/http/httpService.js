@@ -1,5 +1,7 @@
 import { HttpHeader, HttpMethod } from 'common/enums';
 
+export let statusCode;
+
 class Http {
     load(url, options = {}){
         const { method = HttpMethod.GET, payload = null, contentType } = options;
@@ -10,7 +12,7 @@ class Http {
         return fetch(url, {
             method,
             headers,
-            body: payload
+            body: payload,
         })
             .then(this._checkStatus)
             .then(this._parseJSON)
@@ -24,11 +26,17 @@ class Http {
             headers.append(HttpHeader.CONTENT_TYPE, contentType);
         }
 
+        if(sessionStorage.getItem('token')) {
+            headers.append(HttpHeader.AUTHORIZATION, `Bearer ${sessionStorage.getItem('token')}`);
+        }
+
         return headers;
     }
 
     _checkStatus(response) {
         const { ok: isOk, status, statusText } = response;
+
+        statusCode = status;
 
         if( status === 401){
             console.log('log-out');

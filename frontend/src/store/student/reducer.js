@@ -23,9 +23,7 @@ const reducer = createReducer(initialState, (buider) => {
         state.status = DataStatus.PENDING
     });
 
-    buider.addCase(getStudent.fulfilled, (state, { payload }) => {
-        const { student } = payload;
-        state.student = student;
+    buider.addCase(getStudent.fulfilled, (state) => {
         state.status = DataStatus.SUCCESS;
     });
 

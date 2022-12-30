@@ -27,6 +27,7 @@ const Header = () => {
   const location = useLocation();
   const path = location.pathname;
 
+  console.log(auth);
   return(
     <header className='header'>
       <nav className='navigation'>

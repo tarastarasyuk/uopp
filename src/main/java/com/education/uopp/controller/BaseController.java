@@ -33,11 +33,10 @@ public class BaseController extends ExceptionHandling {
     }
 
     @PostMapping("/sign-in")
-    public ResponseEntity<User> login(@RequestBody User user) {
+    public ResponseEntity<String> login(@RequestBody User user) {
         authenticate(user.getEmail(), user.getPassword());
         User loginUser = (User) userService.loadUserByUsername(user.getEmail());
-        HttpHeaders jwtHeader = getJwtHeader(loginUser);
-        return new ResponseEntity<>(loginUser, jwtHeader, HttpStatus.OK);
+        return new ResponseEntity<>(jwtTokenProvider.generateJwtToken(loginUser), HttpStatus.OK);
     }
 
     private HttpHeaders getJwtHeader(User loginUser) {
