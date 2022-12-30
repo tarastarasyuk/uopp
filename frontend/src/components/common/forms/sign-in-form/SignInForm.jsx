@@ -9,6 +9,7 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { getProfile } from 'store/profile/actions';
+import jwtDecode from 'jwt-decode';
 
 const notify = () => toast.success('Confirm your e-mail and sign in!', {
     position: "top-right",
@@ -49,9 +50,10 @@ const SignInForm = () => {
 
         axios.post('http://localhost:8080/sign-in', {...studentDto})
         .then(res => {
-            sessionStorage.setItem('id', res.data.id);
-            sessionStorage.setItem('token', res.data.token);
-            dispatch(getProfile({profileId: res.data.id}));
+            const data = jwtDecode(res.data);
+            sessionStorage.setItem('id', data.id);
+            sessionStorage.setItem('token', res.data);
+            dispatch(getProfile({profileId: data.id}));
         });
         
         navigate('/profile');
