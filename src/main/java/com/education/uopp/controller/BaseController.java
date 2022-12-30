@@ -37,12 +37,15 @@ public class BaseController extends ExceptionHandling {
         authenticate(user.getEmail(), user.getPassword());
         User loginUser = (User) userService.loadUserByUsername(user.getEmail());
         return new ResponseEntity<>(jwtTokenProvider.generateJwtToken(loginUser), HttpStatus.OK);
+<<<<<<< HEAD
     }
 
     private HttpHeaders getJwtHeader(User loginUser) {
         HttpHeaders headers = new HttpHeaders();
         headers.add(JWT_TOKEN_HEADER, jwtTokenProvider.generateJwtToken(loginUser));
         return headers;
+=======
+>>>>>>> 415efe5cc08f50148851130d4c64f303b2cbd383
     }
 
     private void authenticate(String email, String password) {
