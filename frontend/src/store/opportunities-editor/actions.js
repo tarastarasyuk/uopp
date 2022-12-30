@@ -8,7 +8,7 @@ const fetchOpportunities = createAsyncThunk(ActionType.GET, async (params, { ext
 }));
 
 const fetchOpportunitiesFromTelegram = createAsyncThunk(ActionType.TELEGRAM, async (params, { extra }) => ({
-    opportunities: await extra.opportunitiesService.getAllFromTelegram({
+    opportunities: await extra.opportunitiesEditorService.getAllFromTelegram({
         ...params
     }),
 }));

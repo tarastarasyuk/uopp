@@ -9,9 +9,10 @@ const StudentProvider = ({ children }) => {
     const { student } = useSelector((state) => state.profile);
 
     useEffect(() => {
-        dispatch(getProfile({
-            profileId: sessionStorage.getItem('id'),
-        }));
+        if(sessionStorage.getItem('id'))
+            dispatch(getProfile({
+                profileId: sessionStorage.getItem('id'),
+            }));
     }, [dispatch]);
 
     const [studentContext, setStudentContext] = useState(student);

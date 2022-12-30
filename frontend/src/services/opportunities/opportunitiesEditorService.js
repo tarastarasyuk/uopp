@@ -5,6 +5,8 @@ class OpportunitiesEditor {
         this._baseURL = baseURL;
         this._http = http;
         this._basePath = ApiPath.OPPORTUNITIES_EDITOR;
+        this._telegramPath = ApiPath.TELEGRAM;
+
     }
 
     getAll(params) {
@@ -15,7 +17,7 @@ class OpportunitiesEditor {
     }
 
     getAllFromTelegram(){
-        return this._http.load(this._getUrl(), {
+        return this._http.load(this._getTelegramUrl(), {
             method: HttpMethod.GET,
         });
     }
@@ -47,6 +49,10 @@ class OpportunitiesEditor {
 
     _getUrl(path = '') {
         return `${this._baseURL}${this._basePath}${path}`;
+    }
+
+    _getTelegramUrl(path = '') {
+        return `${this._baseURL}${this._telegramPath}${path}`;
     }
 
     _getQueryString(obj) {
