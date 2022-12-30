@@ -5,7 +5,20 @@ import { createStudent } from 'store/student/actions';
 import { useNavigate } from 'react-router-dom';
 import '../style.css';
 import { DataStatus } from 'common/enums';
-import { notify } from '../sign-in-form/SignInForm';
+import { ToastContainer, toast } from 'react-toastify';
+
+const notifyError = () => {
+
+    return toast.error('E-mail already exists!', {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    });}
 
 const genders = [
     {
@@ -45,7 +58,6 @@ const SignUpForm = () => {
         }
         
         dispatch(createStudent(user));
-        notify();
     }
 
     useEffect(() => {
@@ -57,6 +69,7 @@ const SignUpForm = () => {
 
     return (
         <form className='sign-form' noValidate autoComplete='off'>
+            <ToastContainer />
             <div className='input-wrapper'>
                 <span>First name:</span>
                 <TextField required className='input' label='Name' variant='outlined' value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
@@ -118,4 +131,4 @@ const SignUpForm = () => {
     )
 }
 
-export { SignUpForm };
+export { SignUpForm, notifyError };
