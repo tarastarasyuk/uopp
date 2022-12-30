@@ -8,8 +8,18 @@ import { StudentContext } from 'context/student';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { statusCode } from 'services/http/httpService';
 import { getProfile } from 'store/profile/actions';
+
+const notify = () => toast.success('Confirm your e-mail and sign in!', {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    });
 
 const SignInForm = () => {
     const [email, setEmail] = useState('');
@@ -22,25 +32,11 @@ const SignInForm = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const notify = () => toast.success('Confirm your e-mail and sign in!', {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        });
-
     useEffect(() => {
-        if(!sessionStorage.getItem('token') && statusCode === 200) notify();
-    }, []);
 
-    useEffect(() => {
-        if(student){
+        if(student)
             setStudentContext(student);
-        }
+        
     }, [student]);
 
     const submit = (e) => {
@@ -78,4 +74,4 @@ const SignInForm = () => {
     )
 }
 
-export { SignInForm };
+export { SignInForm, notify };

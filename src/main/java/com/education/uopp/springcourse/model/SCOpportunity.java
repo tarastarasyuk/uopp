@@ -34,7 +34,7 @@ public class SCOpportunity {
     @Column(nullable = false)
     private Boolean asap;
 
-    @Column(nullable = false, length = 2000)
+    @Column(nullable = false, length = 5000)
     private String content;
 
     @Column(nullable = false)

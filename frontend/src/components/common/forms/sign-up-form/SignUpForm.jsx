@@ -5,6 +5,7 @@ import { createStudent } from 'store/student/actions';
 import { useNavigate } from 'react-router-dom';
 import '../style.css';
 import { DataStatus } from 'common/enums';
+import { notify } from '../sign-in-form/SignInForm';
 
 const genders = [
     {
@@ -44,6 +45,7 @@ const SignUpForm = () => {
         }
         
         dispatch(createStudent(user));
+        notify();
     }
 
     useEffect(() => {

@@ -1,5 +1,5 @@
 const ApiPath = {
-    TELEGRAM: '/',
+    TELEGRAM: '/uploadOpportunities',
     OPPORTUNITIES: '/opportunities',
     OPPORTUNITIES_EDITOR: '/editor/opportunities',
     STUDENT: '/',
