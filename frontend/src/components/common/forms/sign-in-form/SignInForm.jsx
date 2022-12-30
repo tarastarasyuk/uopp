@@ -32,31 +32,24 @@ const SignInForm = () => {
         });
 
     useEffect(() => {
-        if(!sessionStorage.getItem('token') && statusCode === 200) notify();
+        if(!sessionStorage.getItem('token') && statusCode === 200 && student) notify();
     }, []);
 
     const submit = (e) => {
         e.preventDefault();
 
-        const studentGet = {
+        const studentDto = {
             email,
             password,
         }
 
-        axios.post('http://localhost:8080/sign-in', {...studentGet})
+        axios.post('http://localhost:8080/sign-in', {...studentDto})
         .then(res => sessionStorage.setItem('token', res.data));
-    }
-
-    useEffect(() => {
+        
         setStudentContext(student);
-
-        if(sessionStorage.getItem('token')){
-            navigate('/');
-            setAuth(true);
-        }
-
-    }, [student, sessionStorage.getItem('token')]);
-
+        navigate('/');
+        setAuth(true);
+    }
 
     return (
         <form className='sign-form' noValidate autoComplete='off'>
