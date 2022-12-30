@@ -1,18 +1,16 @@
 package com.education.uopp.integration.feign;
 
-import com.education.uopp.springcourse.dto.OpportunityDto;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-// TODO: url to properties
-@FeignClient(value = "opportunityBase", url = "http://localhost:105/getOpportunities")
+@FeignClient(value = "opportunityBase", url = "${fc.opportunity.url}")
 public interface OpportunityFromTelegramClient {
-
-    @RequestMapping(method = RequestMethod.GET, value = "/teleopp")
-    List<OpportunityDto> getOpportunities(@PathVariable("channel") String channel, @PathVariable("q") Integer q);
-
+    @GetMapping(value = "/getOpportunities")
+    List<OpportunityFeignDto> getOpportunities(
+            @RequestParam(value = "channel", required = false) String channel,
+            @RequestParam(value = "q", required = false) Integer q
+    );
 }

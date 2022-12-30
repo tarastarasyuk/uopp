@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SCOpportunityRepository extends JpaRepository<SCOpportunity, Long> {
+    boolean existsByPostIdAndPostIdIsNotNull(Long postId);
 }

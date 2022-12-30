@@ -6,6 +6,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Getter
 @Setter
@@ -19,6 +21,9 @@ public class SCOpportunity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true, nullable = false)
+    private Long postId;
+
     @Column(nullable = false)
     private String name;
 
@@ -29,7 +34,7 @@ public class SCOpportunity {
     @Column(nullable = false)
     private Boolean asap;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 2000)
     private String content;
 
     @Column(nullable = false)
@@ -42,5 +47,21 @@ public class SCOpportunity {
         this.deadline = deadline;
         this.asap = asap;
         this.content = content;
+    }
+
+    public SCOpportunity(Long postId, String content, Date createdAt) {
+        this.postId = postId;
+        this.content = content;
+        this.createdAt = createdAt;
+
+        this.asap = false;
+        this.deadline = new Date(); // FIXME
+
+        this.name = extractNameFromContent(content, 3);
+    }
+
+    private String extractNameFromContent(String content, int q) {
+        Matcher m = Pattern.compile("^(?:[^ ]+ ){".concat(String.valueOf(q)).concat("}")).matcher(content);
+        return m.find() ? m.group() : "POST";
     }
 }
