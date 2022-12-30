@@ -23,7 +23,8 @@ public final class SecurityConstant {
             "/sign-in",
             "/opportunities*",
             "/logout",
-            "/editor*"
+            "/editor*",
+            "/regModeToggle"
     };
 
     public static final String[] EDITOR_URLS = {

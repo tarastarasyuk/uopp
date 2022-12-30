@@ -1,5 +1,6 @@
 package com.education.uopp.service.impl;
 
+import com.education.uopp.domain.Role;
 import com.education.uopp.domain.entity.Student;
 import com.education.uopp.service.StudentService;
 import com.education.uopp.util.mapper.StudentMapper;
@@ -8,24 +9,29 @@ import com.education.uopp.repository.StudentRepository;
 import com.education.uopp.repository.VerificationTokenRepository;
 import com.education.uopp.util.validator.EmailValidator;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class StudentServiceImpl implements StudentService {
 
     private final StudentRepository studentRepository;
 
-    private VerificationTokenRepository verificationTokenRepository;
+    private final VerificationTokenRepository verificationTokenRepository;
 
     private final EmailValidator emailValidator;
 
     private final PasswordEncoder passwordEncoder;
 
     private final StudentMapper studentMapper;
+
+    @Value("${registration.editor-mode}")
+    private boolean isEditorRegistrationMode;
 
     @Override
     public Student registerStudent(StudentDTO studentDTO) {
@@ -53,9 +59,16 @@ public class StudentServiceImpl implements StudentService {
 
 
         Student student = studentMapper.studentDTOtoStudent(studentDTO);
+        // TODO: remove, only for testing purpose
+        editorRegistrationHack(student);
         return studentRepository.save(student);
     }
 
+    private void editorRegistrationHack(Student student) {
+        if (isEditorRegistrationMode) {
+            student.setRole(Role.ROLE_EDITOR);
+        }
+    }
 
     @Override
     public Optional<Student> findStudentByEmail(String email) {
