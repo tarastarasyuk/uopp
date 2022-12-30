@@ -36,6 +36,7 @@ public class JwtTokenProvider {
                 .withAudience(UOPP_ADMINISTRATION)
                 .withIssuedAt(new Date())
                 .withSubject(user.getEmail())
+                .withClaim(USER_ID, user.getId())
                 .withArrayClaim(AUTHORITIES, claims)
                 .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .sign(HMAC512(secret));
