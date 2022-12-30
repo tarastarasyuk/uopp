@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useContext, useState }  from 'react'
 import { TextField, Button } from '@material-ui/core';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { AuthContext } from 'context/auth';
 import { StudentContext } from 'context/student';
@@ -9,6 +9,7 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { statusCode } from 'services/http/httpService';
+import { getProfile } from 'store/profile/actions';
 
 const SignInForm = () => {
     const [email, setEmail] = useState('');
@@ -19,6 +20,7 @@ const SignInForm = () => {
     const { setStudentContext } = useContext(StudentContext);
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const notify = () => toast.success('Confirm your e-mail and sign in!', {
         position: "top-right",
@@ -35,6 +37,12 @@ const SignInForm = () => {
         if(!sessionStorage.getItem('token') && statusCode === 200) notify();
     }, []);
 
+    useEffect(() => {
+        if(student){
+            setStudentContext(student);
+        }
+    }, [student]);
+
     const submit = (e) => {
         e.preventDefault();
 
@@ -45,12 +53,11 @@ const SignInForm = () => {
 
         axios.post('http://localhost:8080/sign-in', {...studentDto})
         .then(res => {
-            console.log(res.data)
-            sessionStorage.setItem('id', res.data.id)
-            sessionStorage.setItem('token', res.data.token)
+            sessionStorage.setItem('id', res.data.id);
+            sessionStorage.setItem('token', res.data.token);
+            dispatch(getProfile({profileId: res.data.id}));
         });
         
-        setStudentContext(student);
         navigate('/profile');
         setAuth(true);
     }
