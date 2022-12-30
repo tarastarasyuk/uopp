@@ -28,3 +28,5 @@ app:
 fc:
   opportunity:
     url: 'http://localhost:5000'
+registration:
+  editor-mode: false
