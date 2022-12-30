@@ -3,6 +3,8 @@ import { TextField, Button } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { AuthContext } from 'context/auth';
 import { editProfile } from 'store/profile/actions';
+import { ContainedButton } from 'components/styled/button';
+import { useNavigate } from 'react-router-dom';
 
 const ProfileEditorForm = () => {
     const { setAuth } = useContext(AuthContext);
@@ -15,6 +17,7 @@ const ProfileEditorForm = () => {
     const [gender, setGender] = useState('');
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     
     const submit = (e) => {
         e.preventDefault();
@@ -43,6 +46,12 @@ const ProfileEditorForm = () => {
             setGender(student.gender);
         }
     }, [student]);
+
+    const logout = (e) => {
+        sessionStorage.removeItem('token'); 
+        navigate('/'); 
+        setAuth(false);
+    }
 
     return (
         <form className='sign-form' style={{margin: '10px 0'}} noValidate autoComplete='off'>
@@ -77,6 +86,8 @@ const ProfileEditorForm = () => {
             </div>
 
             <Button type='submit' onClick={submit}>Confirm</Button>
+            <ContainedButton variant='contained' color='primary' onClick={logout}>Logout</ContainedButton>
+            <Button type='submit' onClick={submit}></Button>
         </form>
     )
 }

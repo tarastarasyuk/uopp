@@ -21,11 +21,12 @@ public final class SecurityConstant {
             "/sign-up",
             "/sign-in",
             "/opportunities*",
-            "/logout"
+            "/logout",
+            "/editor*"
     };
 
     public static final String[] EDITOR_URLS = {
-            "/editor*",
+//            "/editor*",
     };
 
     public static final String[] STUDENT_URLS = {

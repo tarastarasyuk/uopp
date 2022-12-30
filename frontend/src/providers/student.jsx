@@ -8,7 +8,6 @@ const StudentProvider = ({ children }) => {
     const dispatch = useDispatch();
     const { student } = useSelector((state) => state.profile);
 
-
     useEffect(() => {
         dispatch(getProfile({
             profileId: sessionStorage.getItem('id'),

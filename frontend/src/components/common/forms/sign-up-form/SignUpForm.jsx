@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createStudent } from 'store/student/actions';
 import { useNavigate } from 'react-router-dom';
 import '../style.css';
+import { DataStatus } from 'common/enums';
 
 const genders = [
     {
@@ -27,7 +28,7 @@ const SignUpForm = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { student } = useSelector((state) => state.student);
+    const { student, status } = useSelector((state) => state.student);
     
     const submit = (e) => {
         e.preventDefault();
@@ -52,7 +53,7 @@ const SignUpForm = () => {
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [student]);
-    
+
     return (
         <form className='sign-form' noValidate autoComplete='off'>
             <div className='input-wrapper'>
@@ -107,7 +108,11 @@ const SignUpForm = () => {
                 <TextField required className='input' label='Age' variant='outlined' value={age} onChange={(e) => setAge(e.target.value)}/>
             </div>
             
-            <Button type='submit' onClick={submit}>Sign up</Button>
+            {status === DataStatus.PENDING
+                ? <div className="lds-ring"><div></div><div></div><div></div><div></div></div>
+                : <Button type='submit' onClick={submit}>Sign up</Button>
+            }
+
         </form>
     )
 }
